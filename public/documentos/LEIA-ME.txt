@@ -1,0 +1,21 @@
+PASTA DE DOCUMENTOS
+===================
+
+Os arquivos desta pasta são os materiais reais entregues à Ineprotec e
+à Matrícula EAD e ficam disponíveis para visualização e download na página.
+
+Os brandbooks das duas escolas não ficam aqui: eles são páginas online e
+estão cadastrados como links em src/data/documentos.ts.
+
+Como incluir um novo material:
+
+1. Copie o arquivo para esta pasta (public/documentos/).
+2. Use nomes sem acento, sem espaço e em letras minúsculas.
+   Exemplo: calendario-editorial-agosto.pdf
+3. Abra src/data/documentos.ts e acrescente o registro do documento,
+   apontando o campo "arquivo" para /documentos/nome-do-arquivo.pdf
+
+Pendente: manual-treinamento-consultores-comercial.pdf (e o texto em public/conteudos/)
+O registro já está pronto (comentado) no final de src/data/documentos.ts.
+
+Formatos aceitos: PDF, DOCX, PPTX e XLSX.

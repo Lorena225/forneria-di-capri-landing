@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================================
+   IDENTIDADE VISUAL DA VIRTRUVIA
+   Altere apenas os valores abaixo para trocar as cores de toda a página.
+   ========================================================================= */
+:root {
+  --vtr-papel: #fbfaf8; /* fundo da página */
+  --vtr-superficie: #ffffff; /* fundo de cards e modais */
+  --vtr-tinta: #14130f; /* títulos e texto principal */
+  --vtr-grafite: #3f3d38; /* texto de apoio */
+  --vtr-neutro: #737069; /* legendas e metadados */
+  --vtr-linha: #e4e0d8; /* bordas discretas */
+
+  /* Única cor principal de destaque */
+  --vtr-destaque: #8a6b32;
+  --vtr-destaque-forte: #6c5225; /* variação escura, para texto sobre branco */
+  --vtr-destaque-suave: #f4eee2; /* variação clara, para fundos sutis */
+}
+
+@layer base {
+  * {
+    @apply border-linha;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-papel font-sans text-grafite antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--vtr-destaque-suave);
+    color: var(--vtr-tinta);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--vtr-destaque-forte);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Barra de rolagem discreta dentro dos modais */
+  .rolagem-discreta {
+    scrollbar-width: thin;
+    scrollbar-color: var(--vtr-linha) transparent;
+  }
+  .rolagem-discreta::-webkit-scrollbar {
+    width: 8px;
+  }
+  .rolagem-discreta::-webkit-scrollbar-thumb {
+    background-color: var(--vtr-linha);
+    border-radius: 999px;
+  }
+  .rolagem-discreta::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  /* Rótulo tipográfico usado em eyebrows e metadados */
+  .rotulo {
+    @apply font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-neutro;
+  }
+
+  .link-sublinhado {
+    background-image: linear-gradient(var(--vtr-destaque), var(--vtr-destaque));
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-sublinhado:hover,
+  .link-sublinhado:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+/* Respeita a preferência de redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
