@@ -265,12 +265,26 @@ para quem está logado na sua conta. Para que qualquer pessoa com o link consiga
 acessar: painel da Vercel → projeto `virtruvia-materiais` → **Settings** →
 **Deployment Protection** → **Vercel Authentication** → **Disabled** → Save.
 
-### Alternativa sem terminal
+### Repositório no GitHub
 
-1. Crie um repositório no GitHub e envie a pasta do projeto.
-2. Em vercel.com, **Add New → Project**, importe o repositório e escolha o
-   projeto existente `virtruvia-materiais`.
-3. Cada envio ao repositório passa a gerar uma publicação nova automaticamente.
+O projeto está versionado em:
+
+**https://github.com/Lorena225/virtruvia-MAT-INE-CONSULTORIA** (privado)
+
+A pasta já vem com o `origin` configurado, então para enviar alterações basta:
+
+```bash
+git add -A
+git commit -m "descrição da mudança"
+git push
+```
+
+Para ligar o repositório ao projeto do Vercel e ter publicação automática a
+cada envio: painel do Vercel → projeto `virtruvia-materiais` → **Settings** →
+**Git** → **Connect Git Repository** → escolher o repositório.
+
+Enquanto essa conexão não existir, a publicação continua sendo pelo
+`bash publicar.sh`.
 
 ---
 
