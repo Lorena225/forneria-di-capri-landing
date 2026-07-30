@@ -12,13 +12,13 @@ interface Props {
 }
 
 const classeBotaoSecundario = cn(
-  'inline-flex items-center gap-2 rounded-md border border-linha px-4 py-2.5 text-sm font-medium text-tinta',
-  'transition-colors duration-200 hover:border-destaque/50 hover:bg-destaque-suave hover:text-destaque-forte',
+  'inline-flex items-center gap-2 rounded-md border border-linha bg-superficie px-4 py-2.5 text-sm font-medium text-tinta',
+  'transition-colors duration-200 hover:border-argila/50 hover:bg-areia-clara hover:text-argila-forte',
 )
 
 const classeBotaoPrincipal = cn(
-  'inline-flex items-center gap-2 rounded-md bg-tinta px-4 py-2.5 text-sm font-medium text-papel',
-  'transition-colors duration-200 hover:bg-destaque-forte active:bg-destaque',
+  'inline-flex items-center gap-2 rounded-md bg-argila-forte px-4 py-2.5 text-sm font-medium text-white',
+  'transition-colors duration-200 hover:bg-tinta active:bg-tinta',
 )
 
 export function ItemDocumento({ documento, mostrarArea = false }: Props) {
@@ -33,7 +33,7 @@ export function ItemDocumento({ documento, mostrarArea = false }: Props) {
     <li className="group border-b border-linha py-7 last:border-b-0">
       <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-10">
         <div className="min-w-0">
-          <p className="rotulo">
+          <p className="rotulo-tecnico">
             {documento.categoria}
             <span aria-hidden="true" className="mx-2 text-linha">
               /
@@ -56,7 +56,7 @@ export function ItemDocumento({ documento, mostrarArea = false }: Props) {
                 onClick={() => setAberto((valor) => !valor)}
                 aria-expanded={aberto}
                 aria-controls={idLeitura}
-                className="text-left font-display text-xl font-normal leading-snug text-tinta transition-colors hover:text-destaque-forte sm:text-[1.375rem]"
+                className="text-left font-display text-xl font-normal leading-snug text-tinta transition-colors hover:text-argila-forte sm:text-[1.375rem]"
               >
                 {documento.titulo}
               </button>
@@ -71,7 +71,7 @@ export function ItemDocumento({ documento, mostrarArea = false }: Props) {
             {documento.descricao}
           </p>
 
-          <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.8125rem] text-neutro">
+          <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.8125rem] text-pedra-escura">
             <span className="inline-flex items-center gap-1.5">
               {externo ? (
                 <Link2 aria-hidden="true" strokeWidth={1.4} className="h-3.5 w-3.5" />

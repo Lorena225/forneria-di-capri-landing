@@ -1,10 +1,10 @@
-# VirtruvIA — Portal de materiais
+# VirtruvIA — Página da consultoria
 
-Página institucional que reúne os documentos, estratégias e materiais desenvolvidos pela
-VirtruvIA para a **Ineprotec** e a **Matrícula EAD**.
+Página de entregas da consultoria estratégica da VirtruvIA para a **Ineprotec** e a
+**Matrícula EAD**. Reúne o resumo do trabalho, os dois mini-cases e o acervo de
+materiais, organizados em três macroáreas.
 
-Página única, sem backend, sem banco de dados e sem área administrativa. Todo o conteúdo
-vem de um único arquivo de dados: `src/data/documentos.ts`.
+Página única, sem backend, sem banco de dados e sem área administrativa.
 
 ---
 
@@ -23,17 +23,24 @@ Requisito: Node.js 18 ou superior.
 
 ```bash
 npm install
-npm run dev
+npm run dev     # abre em http://localhost:5173
+npm run build   # gera a versão de produção em dist/
+npm run preview # abre a versão de produção localmente
 ```
 
-A página abre em `http://localhost:5173`.
+---
 
-Outros comandos:
+## Estrutura da página
 
-```bash
-npm run build     # gera a versão de produção na pasta dist/
-npm run preview   # abre a versão de produção localmente
-```
+1. **Hero** — título, subtítulo, texto de apoio e selo institucional
+2. **Resumo da consultoria** — texto e cinco pontos do trabalho realizado
+3. **Mini-cases** — Ineprotec e Matrícula EAD, cada um com desafio, entregas e foco
+4. **Áreas da consultoria** — três cards: Fundação estratégica, Marketing e Comercial
+5. **Acervo de entregas** — filtro por instituição e materiais agrupados por área
+6. **Rodapé institucional**
+
+Os cards das áreas levam direto ao grupo correspondente no acervo, sem abrir popup e
+sem repetir a lista de documentos em dois lugares.
 
 ---
 
@@ -41,237 +48,154 @@ npm run preview   # abre a versão de produção localmente
 
 ```
 public/
-  logo-virtruvia.png        → logotipo usado no cabeçalho e no rodapé
-  documentos/               → todos os arquivos disponíveis para download
-  conteudos/                → texto dos documentos, exibido dentro dos popups
+  logo-virtruvia.png    → logotipo do cabeçalho e do rodapé
+  documentos/           → arquivos disponíveis para download
+  conteudos/            → texto dos documentos, exibido na página
 src/
-  data/documentos.ts        → ÚNICO arquivo a editar no dia a dia
-  components/               → componentes da página
-  lib/utils.ts              → pesquisa, filtros e ordenação
-  index.css                 → variáveis de cor da marca
-  App.tsx                   → montagem da página
+  data/textos.ts        → todo o conteúdo escrito da página
+  data/documentos.ts    → áreas, instituições e materiais
+  components/           → componentes da página
+  lib/utils.ts          → pesquisa, filtros e ordenação
+  index.css             → paleta e estilos base
+  App.tsx               → montagem da página
 ```
 
 ---
 
 ## 1. Trocar o logotipo
 
-1. Salve o novo arquivo como `public/logo-virtruvia.png`, mantendo o mesmo nome.
-2. Use PNG com fundo transparente e altura mínima de 300 px.
-3. Se preferir outro nome ou formato (SVG, por exemplo), altere o caminho em dois lugares:
-   - `src/components/Cabecalho.tsx`
-   - `src/components/Rodape.tsx`
-
-O logotipo aparece em altura fixa; a largura se ajusta sozinha.
+Substitua `public/logo-virtruvia.png`, mantendo o nome. Use PNG com fundo
+transparente e altura mínima de 300 px. No rodapé ele é exibido em branco
+automaticamente. Para usar outro nome ou formato, ajuste o caminho em
+`src/components/Cabecalho.tsx` e `src/components/Rodape.tsx`.
 
 ---
 
 ## 2. Alterar as cores
 
-Todas as cores estão no início de `src/index.css`, no bloco `:root`:
+A paleta fica no início de `src/index.css`. Os valores estão em **R G B separados por
+espaço** — esse formato é o que permite aplicar transparências. O hexadecimal
+correspondente está anotado ao lado de cada linha.
 
 ```css
 :root {
-  --vtr-papel: #fbfaf8;          /* fundo da página */
-  --vtr-superficie: #ffffff;     /* fundo dos cards e dos popups */
-  --vtr-tinta: #14130f;          /* títulos e texto principal */
-  --vtr-grafite: #3f3d38;        /* texto de apoio */
-  --vtr-neutro: #737069;         /* legendas e metadados */
-  --vtr-linha: #e4e0d8;          /* bordas discretas */
-
-  --vtr-destaque: #8a6b32;       /* cor principal de destaque */
-  --vtr-destaque-forte: #6c5225; /* versão escura, usada em texto */
-  --vtr-destaque-suave: #f4eee2; /* versão clara, usada em fundos */
+  --vtr-argila: 176 115 69;        /* #b07345 — destaque da marca */
+  --vtr-argila-forte: 138 87 50;   /* #8a5732 — botões e texto */
+  --vtr-areia: 219 194 180;        /* #dbc2b4 — hero e superfícies quentes */
+  --vtr-areia-clara: 242 233 225;  /* #f2e9e1 — fundos sutis */
+  --vtr-pedra: 139 132 125;        /* #8b847d — bordas e apoio */
+  --vtr-pedra-escura: 110 103 95;  /* #6e675f — legendas */
+  --vtr-sereno: 133 155 164;       /* #859ba4 — elementos técnicos */
+  --vtr-sereno-forte: 95 114 123;  /* #5f727b — rótulos */
+  --vtr-sereno-claro: 231 237 239; /* #e7edef — badges e filtros */
 }
 ```
 
-Basta trocar os valores. A página inteira acompanha, sem precisar mexer em componentes.
-Ao mudar a cor de destaque, ajuste também as versões **forte** (mais escura, para manter
-contraste em texto) e **suave** (bem clara, para fundos de hover).
+Para converter um hexadecimal novo: `#b07345` → `b0`=176, `73`=115, `45`=69 →
+`176 115 69`.
+
+As quatro cores oficiais da marca são a argila, a areia, a pedra e a serena. As
+versões **forte** existem porque as cores originais não têm contraste suficiente para
+texto pequeno sobre fundo claro — elas garantem leitura acessível mantendo a mesma
+família de cor.
 
 ---
 
-## 3. Cadastrar novos documentos
+## 3. Alterar os textos
 
-Abra `src/data/documentos.ts` e acrescente um objeto na lista `documentos`:
+Todo o conteúdo escrito está em `src/data/textos.ts`: hero, resumo, mini-cases,
+títulos das seções, microcopy dos filtros, estado vazio e rodapé. Dá para revisar a
+comunicação inteira sem tocar em componente nenhum.
+
+---
+
+## 4. Cadastrar novos documentos
+
+Em `src/data/documentos.ts`, acrescente um objeto na lista `documentos`:
 
 ```ts
 {
-  id: 'documento-13',                                   // precisa ser único
+  id: 'documento-12',
   titulo: 'Plano de campanha — volta às aulas',
   descricao: 'Conceito, mensagens e cronograma da campanha.',
-  escolas: ['ineprotec'],                               // uma ou as duas escolas
-  area: 'marketing',                                    // ver lista abaixo
-  categoria: 'Campanhas',                               // ver lista abaixo
-  tipo: 'PDF',                                          // PDF | DOCX | PPTX | XLSX | Link
-  dataAtualizacao: '29/07/2026',                        // sempre dd/mm/aaaa
-  arquivo: '/documentos/plano-campanha-volta-as-aulas.pdf',
+  escolas: ['ineprotec'],              // uma ou as duas escolas
+  area: 'marketing',                   // fundacao-estrategica | marketing | comercial
+  categoria: 'Campanhas',              // um dos itens da área (ver tabela abaixo)
+  tipo: 'PDF',                         // PDF | DOCX | PPTX | XLSX | Link
+  dataAtualizacao: '29/07/2026',       // sempre dd/mm/aaaa
+  arquivo: '/documentos/plano-campanha.pdf',
+  conteudo: '/conteudos/plano-campanha.md',  // opcional: texto exibido na página
 }
 ```
 
-**Material comum às duas escolas** — informe as duas no campo `escolas`:
+### Áreas e seus itens
 
-```ts
-escolas: ['ineprotec', 'matricula-ead'],
-```
+| `area`                  | Itens aceitos em `categoria`                                                                                                                        |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fundacao-estrategica`  | Pesquisa de mercado · Posicionamento de marca                                                                                                        |
+| `marketing`             | Planejamento estratégico · Calendários de marketing · Calendários editoriais · Campanhas · Conteúdos e posts · Treinamentos de marketing              |
+| `comercial`             | Diagnóstico comercial · Processos comerciais · Organização do funil de vendas · Etapas da jornada do lead · Scripts de atendimento · Treinamentos comerciais · Treinamentos de CRM |
 
-O documento passa a aparecer nos dois filtros, e a página mostra
-"Ineprotec e Matrícula EAD" acima do título.
+Para incluir um item novo no escopo de uma área, acrescente-o ao array `itens` da
+área, no mesmo arquivo. Itens sem material publicado aparecem no card como escopo e,
+no acervo, com o aviso de frente em desenvolvimento.
 
-**Material hospedado fora da página** (brandbook, painel, sistema) — use
-`tipo: 'Link'` e coloque o endereço completo em `arquivo`:
+**Material comum às duas escolas:** `escolas: ['ineprotec', 'matricula-ead']`.
 
-```ts
-tipo: 'Link',
-arquivo: 'https://ineprotec-branding.manus.space/',
-```
-
-Nesse caso a página mostra um único botão **Abrir**, que leva ao endereço em
-uma nova aba, em vez de Visualizar e Baixar.
-
-Valores aceitos em `area`:
-
-| Valor                     | Bloco na página          |
-| ------------------------- | ------------------------ |
-| `pesquisa-de-mercado`     | Pesquisa de mercado      |
-| `posicionamento-de-marca` | Posicionamento de marca  |
-| `marketing`               | Marketing                |
-| `estruturacao-comercial`  | Estruturação comercial   |
-| `treinamentos`            | Treinamentos             |
-
-Valores aceitos em `escolas`: `ineprotec` e `matricula-ead`.
-
-O campo `categoria` é texto livre, mas o ideal é usar uma das categorias já
-listadas na área correspondente (elas aparecem no array `areas`, no mesmo
-arquivo). A categoria é usada na pesquisa e aparece acima do nome do documento.
-
-Os documentos aparecem automaticamente no bloco da área, ordenados da data mais
-recente para a mais antiga. Não é preciso mexer em nenhum componente.
-
-Quando uma frente ainda não tiver nenhum material, o bloco aparece na página em
-tom mais suave, com o aviso "Materiais em preparação", e não abre o popup.
-
----
-
-## 4. O que já está publicado e o que falta
-
-Os materiais reais já estão cadastrados e os arquivos estão em
-`public/documentos/`:
-
-| Frente                  | Materiais                                                                |
-| ----------------------- | ------------------------------------------------------------------------ |
-| Pesquisa de mercado     | *(nenhum material ainda)*                                                |
-| Posicionamento de marca | Brandbook Ineprotec e Brandbook Matrícula EAD (links externos)           |
-| Marketing               | Calendários de junho e de julho das duas escolas                         |
-| Estruturação comercial  | Configuração do Kommo, Controle de atividades e Script de vendas         |
-| Treinamentos            | Treinamento de supervisão no Kommo e Treinamento de excelência           |
-
-**Pendências marcadas no código:**
-
-1. **Datas** — todos os registros estão com `29/07/2026`. Ajuste o campo
-   `dataAtualizacao` de cada documento para a data real da última versão.
-2. **Manual de treinamento dos consultores — comercial** — o registro está
-   pronto, porém comentado no final de `src/data/documentos.ts`. Coloque o
-   arquivo em `public/documentos/` e remova os `/*` e `*/` em volta do bloco.
-3. **Pesquisa de mercado** — a frente ainda não tem materiais e aparece com o
-   aviso "Materiais em preparação".
-
-Para acrescentar novos arquivos:
-
-1. Coloque o arquivo em `public/documentos/`.
-2. Use nomes sem acento, sem espaço e sem letra maiúscula
-   (exemplo: `calendario-editorial-agosto.pdf`).
-3. No arquivo de dados, aponte o campo `arquivo` para
-   `/documentos/nome-do-arquivo.pdf` — o caminho sempre começa com
-   `/documentos/`, sem incluir `public`.
-
-O botão **Visualizar** abre o arquivo em uma nova aba e o botão **Baixar** faz o
-download. PDF abre direto no navegador; DOCX e XLSX são baixados pelo próprio
-navegador.
+**Material hospedado fora da página** (brandbook, painel): `tipo: 'Link'` e o endereço
+completo em `arquivo`. A página mostra um botão **Abrir** em vez de Visualizar e Baixar.
 
 ---
 
 ## 5. O texto dos documentos na página
 
-Ao clicar no nome de um documento (ou no botão **Ler aqui**), o texto completo
-aparece dentro do popup, com títulos, listas e tabelas. O botão **Baixar**
-continua disponível para pegar o arquivo original.
+Ao clicar no nome de um documento, ou no botão **Ler aqui**, o texto completo aparece
+na própria página, com títulos, listas e tabelas. O botão **Baixar** continua
+disponível para o arquivo original.
 
-Esse texto não sai do arquivo em tempo real: ele fica em `public/conteudos/`,
-um arquivo `.md` por documento, indicado no campo `conteudo` do registro:
+O texto fica em `public/conteudos/`, um `.md` por documento, apontado pelo campo
+`conteudo`. Formato aceito:
 
-```ts
-arquivo: '/documentos/calendario-junho-ineprotec.docx',
-conteudo: '/conteudos/calendario-junho-ineprotec.md',
-```
+| Escrita          | Resultado                                              |
+| ---------------- | ------------------------------------------------------ |
+| `## Título`      | título de seção                                        |
+| `### Subtítulo`  | subtítulo                                              |
+| `- item`         | lista com marcadores                                   |
+| `1. item`        | lista numerada                                         |
+| `**texto**`      | negrito                                                |
+| `_texto_`        | linha em itálico discreto                              |
+| `\| a \| b \|`      | tabela (`\| --- \| --- \|` na segunda linha define o cabeçalho) |
 
-Documentos sem o campo `conteudo` mostram apenas **Visualizar** e **Baixar** —
-nada quebra, apenas não há leitura na página.
-
-### Formato aceito nos arquivos de conteúdo
-
-A página entende um Markdown simples:
-
-| Escrita              | Resultado                                  |
-| -------------------- | ------------------------------------------ |
-| `## Título`          | título de seção, com linha divisória       |
-| `### Subtítulo`      | subtítulo                                  |
-| `- item`             | lista com marcadores                       |
-| `1. item`            | lista numerada                             |
-| `**texto**`          | negrito                                    |
-| `_texto_`            | linha em itálico discreto                  |
-| `\| a \| b \|`       | tabela (a linha `\| --- \| --- \|` define o cabeçalho) |
-
-O `# Título` da primeira linha é ignorado na exibição, porque o nome do
-documento já aparece logo acima no popup. Tabelas com mais de cinco colunas
-ganham rolagem horizontal automática.
-
-### Para incluir o texto de um documento novo
-
-1. Crie `public/conteudos/nome-do-arquivo.md` seguindo o formato acima.
-2. Aponte o campo `conteudo` do registro para esse caminho.
+O `# Título` da primeira linha é ignorado, porque o nome do documento já aparece
+acima. Tabelas com mais de cinco colunas ganham rolagem horizontal.
 
 ---
 
-## 6. Publicar na Vercel
+## 6. O que já está publicado e o que falta
 
-O projeto já vem vinculado ao projeto **virtruvia-materiais** da sua conta
-(o arquivo `.vercel/project.json` guarda essa ligação), então publicar é um
-comando só, sem perguntas de vinculação:
+| Área                   | Materiais                                                             |
+| ---------------------- | --------------------------------------------------------------------- |
+| Fundação estratégica   | Brandbook Ineprotec e Brandbook Matrícula EAD (links externos)        |
+| Marketing              | Calendários de junho e de julho das duas escolas                      |
+| Comercial              | Configuração do Kommo, Controle de atividades, Script de vendas e os dois treinamentos |
 
-```bash
-bash publicar.sh
-```
+**Pendências marcadas no código:**
 
-O script confere se a CLI da Vercel está instalada, confere o login e publica em
-produção. Na primeira vez ele abre o navegador para você entrar na conta.
+1. **Datas** — todos os registros estão com `29/07/2026`. Ajuste `dataAtualizacao`
+   para a data real de cada versão.
+2. **Manual de treinamento dos consultores** — registro pronto e comentado no fim de
+   `src/data/documentos.ts`. Coloque o arquivo em `public/documentos/` e remova os
+   `/*` e `*/`.
+3. **Pesquisa de mercado** — item sem material publicado, exibido com o aviso de
+   frente em desenvolvimento.
 
-Se preferir fazer na mão:
+---
 
-```bash
-npm install -g vercel
-vercel --prod
-```
+## 7. Publicar
 
-Endereços do projeto:
-
-- https://virtruvia-materiais.vercel.app
-- https://virtruvia-materiais-lorenas-projects-bd05a256.vercel.app
-
-### Liberar o acesso
-
-A Vercel cria o projeto com autenticação ligada, o que faz o link abrir apenas
-para quem está logado na sua conta. Para que qualquer pessoa com o link consiga
-acessar: painel da Vercel → projeto `virtruvia-materiais` → **Settings** →
-**Deployment Protection** → **Vercel Authentication** → **Disabled** → Save.
-
-### Repositório no GitHub
-
-O projeto está versionado em:
-
-**https://github.com/Lorena225/virtruvia-MAT-INE-CONSULTORIA** (privado)
-
-A pasta já vem com o `origin` configurado, então para enviar alterações basta:
+O projeto está no repositório **https://github.com/Lorena225/virtruvia-MAT-INE-CONSULTORIA**
+(privado), conectado ao projeto `mat-ine-consultoria-virtruvia` no Vercel. Cada envio
+ao repositório gera uma publicação nova automaticamente.
 
 ```bash
 git add -A
@@ -279,25 +203,10 @@ git commit -m "descrição da mudança"
 git push
 ```
 
-Para ligar o repositório ao projeto do Vercel e ter publicação automática a
-cada envio: painel do Vercel → projeto `virtruvia-materiais` → **Settings** →
-**Git** → **Connect Git Repository** → escolher o repositório.
+Endereço no ar: **https://mat-ine-consultoria-virtruvia.vercel.app**
 
-Enquanto essa conexão não existir, a publicação continua sendo pelo
-`bash publicar.sh`.
+Alternativa que não depende do Git — publica a pasta local direto:
 
----
-
-## O que a página faz
-
-- Pesquisa por nome do documento, descrição, categoria e instituição, com ou sem acento.
-- Filtro por instituição no cabeçalho, na seção de frentes e dentro de cada popup.
-- Cinco blocos de frentes de trabalho, cada um abrindo um popup com os documentos.
-- Popup fecha pelo botão, pela tecla `Esc` e ao clicar fora; a rolagem da página fica
-  bloqueada enquanto ele estiver aberto e o foco do teclado permanece dentro dele.
-- Texto completo de cada documento dentro do popup, com títulos, listas e
-  tabelas, sem sair da página e sem substituir o download do arquivo original.
-- Estados vazios com orientação de como seguir quando não há resultados.
-- Navegação completa por teclado, foco visível e respeito à preferência de redução de
-  movimento do sistema.
-- Layout responsivo para computador, tablet e celular.
+```bash
+bash publicar.sh
+```

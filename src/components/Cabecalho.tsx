@@ -11,7 +11,7 @@ interface Props {
 
 export function Cabecalho({ busca, aoBuscar, instituicao, aoTrocarInstituicao }: Props) {
   return (
-    <header className="sticky top-0 z-40 border-b border-linha bg-papel/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-linha bg-papel/90 backdrop-blur-md">
       <div className="mx-auto max-w-conteudo px-5 sm:px-8">
         <div className="flex h-[4.5rem] items-center justify-between gap-6">
           <a
@@ -27,7 +27,7 @@ export function Cabecalho({ busca, aoBuscar, instituicao, aoTrocarInstituicao }:
               width={559}
               height={200}
             />
-            <span aria-hidden="true" className="hidden h-8 w-px bg-linha sm:block" />
+            <span aria-hidden="true" className="hidden h-8 w-px bg-pedra/40 sm:block" />
             <span className="hidden flex-col leading-tight sm:flex">
               <span className="text-[0.9375rem] font-medium tracking-[0.12em] text-tinta">
                 VIRTRUVIA

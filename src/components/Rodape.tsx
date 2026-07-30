@@ -1,49 +1,54 @@
+import { rodape } from '../data/textos'
 import { escolas } from '../data/documentos'
 
 export function Rodape() {
   const ano = new Date().getFullYear()
 
   return (
-    <footer className="mt-24 border-t border-linha bg-superficie">
-      <div className="mx-auto max-w-conteudo px-5 py-14 sm:px-8">
-        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+    <footer className="bg-escuro text-areia">
+      <div className="mx-auto max-w-conteudo px-5 py-16 sm:px-8 sm:py-20">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-20">
           <div>
             <img
               src="/logo-virtruvia.png"
               alt="VirtruvIA"
-              className="h-8 w-auto"
-              width={559}
-              height={200}
+              className="h-9 w-auto brightness-0 invert"
+              width={179}
+              height={64}
             />
-            <p className="rotulo mt-4">Consultoria estratégica</p>
-            <p className="mt-4 max-w-[42ch] text-[0.9375rem] leading-relaxed text-neutro">
-              Posicionamento de marca, marketing e estruturação comercial para operações
-              que precisam crescer com consistência.
+            <p className="mt-8 max-w-[52ch] text-[1.0625rem] leading-relaxed text-areia">
+              {rodape.institucional}
+            </p>
+            <p className="mt-8 font-display text-xl font-light italic text-areia/80">
+              {rodape.linhaFinal}
             </p>
           </div>
 
-          <div className="md:text-right">
-            <p className="rotulo">Instituições atendidas</p>
-            <ul className="mt-4 space-y-2">
+          <div className="lg:text-right">
+            <p className="text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-sereno">
+              Instituições atendidas
+            </p>
+            <ul className="mt-5 space-y-3">
               {escolas.map((escola) => (
-                <li key={escola.id} className="text-[0.9375rem] text-grafite">
+                <li key={escola.id} className="text-[0.9375rem] text-white">
                   {escola.nome}
-                  <span className="ml-2 text-[0.8125rem] text-neutro">
+                  <span className="ml-2 block text-[0.8125rem] text-areia/70 lg:inline lg:ml-2">
                     {escola.descricao}
                   </span>
                 </li>
               ))}
             </ul>
+
             <a
-              href="mailto:agenciavirtruvia@gmail.com"
-              className="link-sublinhado mt-6 inline-block text-[0.9375rem] text-tinta"
+              href={`mailto:${rodape.contato}`}
+              className="link-sublinhado mt-8 inline-block text-[0.9375rem] text-white"
             >
-              agenciavirtruvia@gmail.com
+              {rodape.contato}
             </a>
           </div>
         </div>
 
-        <p className="mt-12 border-t border-linha pt-6 text-[0.8125rem] text-neutro">
+        <p className="mt-14 border-t border-areia/20 pt-6 text-[0.8125rem] text-areia/70">
           © {ano} VirtruvIA. Materiais de uso interno das instituições atendidas.
         </p>
       </div>

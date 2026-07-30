@@ -4,20 +4,27 @@
 
 /* =========================================================================
    IDENTIDADE VISUAL DA VIRTRUVIA
-   Altere apenas os valores abaixo para trocar as cores de toda a página.
+   Paleta oficial e neutros de apoio. Altere aqui para mudar a página inteira.
    ========================================================================= */
 :root {
-  --vtr-papel: #fbfaf8; /* fundo da página */
-  --vtr-superficie: #ffffff; /* fundo de cards e modais */
-  --vtr-tinta: #14130f; /* títulos e texto principal */
-  --vtr-grafite: #3f3d38; /* texto de apoio */
-  --vtr-neutro: #737069; /* legendas e metadados */
-  --vtr-linha: #e4e0d8; /* bordas discretas */
+  /* --- paleta oficial (valores em R G B, para permitir transparências) --- */
+  --vtr-argila: 176 115 69; /* #b07345 — acolhedor e autêntico — destaque da marca */
+  --vtr-argila-forte: 138 87 50; /* #8a5732 — variação escura, para botões e texto */
+  --vtr-areia: 219 194 180; /* #dbc2b4 — suave e harmônico — hero e superfícies quentes */
+  --vtr-areia-clara: 242 233 225; /* #f2e9e1 — fundos sutis */
+  --vtr-pedra: 139 132 125; /* #8b847d — sofisticado e equilibrado — bordas e apoio */
+  --vtr-pedra-escura: 110 103 95; /* #6e675f — variação escura, para legendas */
+  --vtr-sereno: 133 155 164; /* #859ba4 — profissional e sereno — elementos técnicos */
+  --vtr-sereno-forte: 95 114 123; /* #5f727b — variação escura, para rótulos */
+  --vtr-sereno-claro: 231 237 239; /* #e7edef — fundo de badges e filtros */
 
-  /* Única cor principal de destaque */
-  --vtr-destaque: #8a6b32;
-  --vtr-destaque-forte: #6c5225; /* variação escura, para texto sobre branco */
-  --vtr-destaque-suave: #f4eee2; /* variação clara, para fundos sutis */
+  /* --- neutros de apoio --- */
+  --vtr-papel: 251 248 245; /* #fbf8f5 — fundo da página */
+  --vtr-superficie: 255 255 255; /* #ffffff — cards e popups */
+  --vtr-tinta: 43 38 34; /* #2b2622 — títulos e texto principal */
+  --vtr-grafite: 74 68 62; /* #4a443e — texto corrido */
+  --vtr-escuro: 38 34 31; /* #26221f — rodapé */
+  --vtr-linha: 227 220 212; /* #e3dcd4 — bordas discretas */
 }
 
 @layer base {
@@ -33,31 +40,31 @@
   body {
     @apply bg-papel font-sans text-grafite antialiased;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.65;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: var(--vtr-destaque-suave);
-    color: var(--vtr-tinta);
+    background: rgb(var(--vtr-areia));
+    color: rgb(var(--vtr-tinta));
   }
 
   :focus-visible {
-    outline: 2px solid var(--vtr-destaque-forte);
+    outline: 2px solid rgb(var(--vtr-argila-forte));
     outline-offset: 3px;
     border-radius: 2px;
   }
 
-  /* Barra de rolagem discreta dentro dos modais */
   .rolagem-discreta {
     scrollbar-width: thin;
-    scrollbar-color: var(--vtr-linha) transparent;
+    scrollbar-color: rgb(var(--vtr-linha)) transparent;
   }
   .rolagem-discreta::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
   }
   .rolagem-discreta::-webkit-scrollbar-thumb {
-    background-color: var(--vtr-linha);
+    background-color: rgb(var(--vtr-linha));
     border-radius: 999px;
   }
   .rolagem-discreta::-webkit-scrollbar-track {
@@ -66,13 +73,17 @@
 }
 
 @layer components {
-  /* Rótulo tipográfico usado em eyebrows e metadados */
+  /* rótulo tipográfico usado em eyebrows e metadados */
   .rotulo {
-    @apply font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-neutro;
+    @apply font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-pedra-escura;
+  }
+
+  .rotulo-tecnico {
+    @apply font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-sereno-forte;
   }
 
   .link-sublinhado {
-    background-image: linear-gradient(var(--vtr-destaque), var(--vtr-destaque));
+    background-image: linear-gradient(rgb(var(--vtr-argila)), rgb(var(--vtr-argila)));
     background-size: 0% 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
@@ -82,9 +93,16 @@
   .link-sublinhado:focus-visible {
     background-size: 100% 1px;
   }
+
+  .botao-principal {
+    @apply inline-flex items-center gap-2 rounded-md bg-argila-forte px-5 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-tinta;
+  }
+
+  .botao-secundario {
+    @apply inline-flex items-center gap-2 rounded-md border border-linha bg-superficie px-5 py-3 text-sm font-medium text-tinta transition-colors duration-200 hover:border-argila/50 hover:bg-areia-clara;
+  }
 }
 
-/* Respeita a preferência de redução de movimento */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -30,7 +30,7 @@ export function SeletorInstituicao({ valor, aoAlterar, id, className }: Props) {
         id={id}
         value={valor}
         onChange={(evento) => aoAlterar(evento.target.value as FiltroInstituicao)}
-        className="h-11 w-full cursor-pointer appearance-none rounded-md border border-linha bg-superficie pl-3 pr-9 text-sm text-tinta transition-colors hover:border-neutro/40 focus:border-destaque focus:outline-none focus-visible:outline-none"
+        className="h-11 w-full cursor-pointer appearance-none rounded-md border border-linha bg-superficie pl-3 pr-9 text-sm text-tinta transition-colors hover:border-pedra-escura/40 focus:border-argila focus:outline-none focus-visible:outline-none"
       >
         {opcoes.map((opcao) => (
           <option key={opcao.valor} value={opcao.valor}>
@@ -40,7 +40,7 @@ export function SeletorInstituicao({ valor, aoAlterar, id, className }: Props) {
       </select>
       <ChevronDown
         aria-hidden="true"
-        className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutro"
+        className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-pedra-escura"
         strokeWidth={1.6}
       />
     </div>
@@ -65,7 +65,7 @@ export function SeletorInstituicaoSegmentado({
       aria-label="Filtrar por instituição"
       id={id}
       className={cn(
-        'inline-flex flex-wrap items-center gap-1 rounded-md border border-linha bg-superficie p-1',
+        'inline-flex flex-wrap items-center gap-1 rounded-md border border-sereno/30 bg-superficie/70 p-1',
         className,
       )}
     >
@@ -84,8 +84,8 @@ export function SeletorInstituicaoSegmentado({
                 ? 'px-4 py-2 text-sm'
                 : 'px-3 py-1.5 text-[0.8125rem]',
               ativo
-                ? 'bg-tinta text-papel'
-                : 'text-neutro hover:bg-destaque-suave hover:text-destaque-forte',
+                ? 'bg-argila-forte text-white shadow-sm'
+                : 'text-sereno-forte hover:bg-superficie hover:text-tinta',
             )}
           >
             {tamanho === 'compacto' ? opcao.curto : opcao.rotulo}

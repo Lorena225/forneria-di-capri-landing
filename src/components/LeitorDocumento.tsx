@@ -59,7 +59,7 @@ function Tabela({ linhas }: { linhas: string[] }) {
       >
         {cabecalho && (
           <thead>
-            <tr className="bg-papel">
+            <tr className="bg-sereno-claro/70">
               {cabecalho.map((celula, indice) => (
                 <th
                   key={indice}
@@ -74,7 +74,7 @@ function Tabela({ linhas }: { linhas: string[] }) {
         )}
         <tbody>
           {corpo.map((linha, indiceLinha) => (
-            <tr key={indiceLinha} className="align-top even:bg-papel/60">
+            <tr key={indiceLinha} className="align-top even:bg-areia-clara/30">
               {linha.map((celula, indice) => (
                 <td
                   key={indice}
@@ -117,7 +117,7 @@ function renderizar(texto: string): ReactNode[] {
       ) : (
         <ul
           key={`lista-${chave++}`}
-          className="my-4 list-disc space-y-1.5 pl-5 text-[0.9375rem] text-grafite marker:text-destaque/60"
+          className="my-4 list-disc space-y-1.5 pl-5 text-[0.9375rem] text-grafite marker:text-argila/60"
         >
           {conteudo}
         </ul>
@@ -202,7 +202,7 @@ function renderizar(texto: string): ReactNode[] {
     const enfatizado = /^_(.+)_$/.exec(linha)
     if (enfatizado) {
       blocos.push(
-        <p key={`p-${chave++}`} className="my-2 text-[0.875rem] italic text-neutro">
+        <p key={`p-${chave++}`} className="my-2 text-[0.875rem] italic text-pedra-escura">
           {enfatizado[1]}
         </p>,
       )
@@ -250,15 +250,15 @@ export function LeitorDocumento({ caminho, arquivo, titulo }: Props) {
   }, [caminho])
 
   return (
-    <div className="mt-6 rounded-md border border-linha bg-papel/60 px-5 py-6 sm:px-7">
-      <p className="rotulo mb-4 border-b border-linha pb-3">Conteúdo do documento</p>
+    <div className="mt-6 rounded-lg border border-linha bg-areia-clara/40 px-5 py-6 sm:px-7">
+      <p className="rotulo-tecnico mb-4 border-b border-linha pb-3">Conteúdo do documento</p>
 
       {erro ? (
         <p className="flex items-start gap-2 text-[0.9375rem] text-grafite">
           <TriangleAlert
             aria-hidden="true"
             strokeWidth={1.5}
-            className="mt-0.5 h-4 w-4 shrink-0 text-neutro"
+            className="mt-0.5 h-4 w-4 shrink-0 text-pedra-escura"
           />
           Não foi possível carregar o conteúdo deste documento. Use o botão Baixar para
           abrir o arquivo original.
@@ -266,7 +266,7 @@ export function LeitorDocumento({ caminho, arquivo, titulo }: Props) {
       ) : texto === null ? (
         <p
           aria-live="polite"
-          className="flex items-center gap-2 text-[0.9375rem] text-neutro"
+          className="flex items-center gap-2 text-[0.9375rem] text-pedra-escura"
         >
           <LoaderCircle
             aria-hidden="true"
@@ -278,7 +278,7 @@ export function LeitorDocumento({ caminho, arquivo, titulo }: Props) {
       ) : (
         <>
           <div className="max-w-[70ch]">{renderizar(texto)}</div>
-          <p className="mt-8 border-t border-linha pt-5 text-[0.8125rem] text-neutro">
+          <p className="mt-8 border-t border-linha pt-5 text-[0.8125rem] text-pedra-escura">
             Este é o texto do documento, apresentado para leitura rápida. Para a versão
             formatada, use o botão Baixar ou{' '}
             <a
