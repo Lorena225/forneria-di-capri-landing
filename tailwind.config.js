@@ -5,10 +5,11 @@ export default {
     extend: {
       colors: {
         /* paleta oficial VirtruvIA */
+        profundo: 'rgb(var(--vtr-profundo) / <alpha-value>)',
+        'profundo-claro': 'rgb(var(--vtr-profundo-claro) / <alpha-value>)',
         argila: 'rgb(var(--vtr-argila) / <alpha-value>)',
         'argila-forte': 'rgb(var(--vtr-argila-forte) / <alpha-value>)',
         areia: 'rgb(var(--vtr-areia) / <alpha-value>)',
-        'areia-clara': 'rgb(var(--vtr-areia-clara) / <alpha-value>)',
         pedra: 'rgb(var(--vtr-pedra) / <alpha-value>)',
         'pedra-escura': 'rgb(var(--vtr-pedra-escura) / <alpha-value>)',
         sereno: 'rgb(var(--vtr-sereno) / <alpha-value>)',
@@ -19,7 +20,6 @@ export default {
         superficie: 'rgb(var(--vtr-superficie) / <alpha-value>)',
         tinta: 'rgb(var(--vtr-tinta) / <alpha-value>)',
         grafite: 'rgb(var(--vtr-grafite) / <alpha-value>)',
-        escuro: 'rgb(var(--vtr-escuro) / <alpha-value>)',
         linha: 'rgb(var(--vtr-linha) / <alpha-value>)',
       },
       fontFamily: {

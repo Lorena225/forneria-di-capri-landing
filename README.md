@@ -39,8 +39,11 @@ npm run preview # abre a versão de produção localmente
 5. **Acervo de entregas** — filtro por instituição e materiais agrupados por área
 6. **Rodapé institucional**
 
-Os cards das áreas levam direto ao grupo correspondente no acervo, sem abrir popup e
-sem repetir a lista de documentos em dois lugares.
+**Como a navegação funciona:** clicar em uma das três áreas filtra o acervo por
+aquela frente e leva a página até ele. Clicar de novo na mesma área volta a exibir
+tudo. No acervo, cada material abre em um painel com a ficha completa — área,
+categoria, instituição, formato e data — de onde se lê o conteúdo ou se baixa o
+arquivo. A lista de documentos existe em um lugar só.
 
 ---
 
@@ -79,15 +82,23 @@ correspondente está anotado ao lado de cada linha.
 
 ```css
 :root {
-  --vtr-argila: 176 115 69;        /* #b07345 — destaque da marca */
-  --vtr-argila-forte: 138 87 50;   /* #8a5732 — botões e texto */
-  --vtr-areia: 219 194 180;        /* #dbc2b4 — hero e superfícies quentes */
-  --vtr-areia-clara: 242 233 225;  /* #f2e9e1 — fundos sutis */
-  --vtr-pedra: 139 132 125;        /* #8b847d — bordas e apoio */
-  --vtr-pedra-escura: 110 103 95;  /* #6e675f — legendas */
-  --vtr-sereno: 133 155 164;       /* #859ba4 — elementos técnicos */
-  --vtr-sereno-forte: 95 114 123;  /* #5f727b — rótulos */
-  --vtr-sereno-claro: 231 237 239; /* #e7edef — badges e filtros */
+  /* base azulada — protagonista */
+  --vtr-profundo: 44 57 63;        /* #2c393f — hero e rodapé */
+  --vtr-profundo-claro: 58 75 82;  /* #3a4b52 — profundidade interna */
+  --vtr-sereno: 133 155 164;       /* #859ba4 — apoio, badges, navegação */
+  --vtr-sereno-forte: 95 114 123;  /* #5f727b — rótulos e pills ativas */
+  --vtr-sereno-claro: 231 237 239; /* #e7edef — faixas técnicas e filtros */
+
+  /* destaque */
+  --vtr-argila: 176 115 69;        /* #b07345 */
+  --vtr-argila-forte: 138 87 50;   /* #8a5732 — CTAs e texto */
+
+  /* calor secundário, uso pontual */
+  --vtr-areia: 219 194 180;        /* #dbc2b4 — detalhes e acentos leves */
+
+  /* neutro sofisticado */
+  --vtr-pedra: 139 132 125;        /* #8b847d — bordas */
+  --vtr-pedra-escura: 110 103 95;  /* #6e675f — textos auxiliares */
 }
 ```
 
@@ -125,6 +136,7 @@ Em `src/data/documentos.ts`, acrescente um objeto na lista `documentos`:
   dataAtualizacao: '29/07/2026',       // sempre dd/mm/aaaa
   arquivo: '/documentos/plano-campanha.pdf',
   conteudo: '/conteudos/plano-campanha.md',  // opcional: texto exibido na página
+  arquivoPdf: '/documentos/plano-campanha.pdf', // opcional: versão em PDF
 }
 ```
 
@@ -143,15 +155,27 @@ no acervo, com o aviso de frente em desenvolvimento.
 **Material comum às duas escolas:** `escolas: ['ineprotec', 'matricula-ead']`.
 
 **Material hospedado fora da página** (brandbook, painel): `tipo: 'Link'` e o endereço
-completo em `arquivo`. A página mostra um botão **Abrir** em vez de Visualizar e Baixar.
+completo em `arquivo`.
+
+**Rótulo do botão de download** — sai automaticamente do campo `tipo`, sem prometer
+PDF onde não existe PDF:
+
+| `tipo`              | Botão            |
+| ------------------- | ---------------- |
+| `PDF`               | Baixar em PDF    |
+| `DOCX`, `XLSX`, `PPTX` | Baixar arquivo   |
+| `Link`              | Abrir material   |
+
+Se um material tiver o original em DOCX ou XLSX **e** uma versão em PDF, preencha
+`arquivoPdf`: a ficha passa a oferecer os dois downloads separadamente.
 
 ---
 
 ## 5. O texto dos documentos na página
 
-Ao clicar no nome de um documento, ou no botão **Ler aqui**, o texto completo aparece
-na própria página, com títulos, listas e tabelas. O botão **Baixar** continua
-disponível para o arquivo original.
+Ao abrir um material no acervo e clicar em **Ler o conteúdo**, o texto completo
+aparece dentro do próprio painel, com títulos, listas e tabelas, sem sair da página.
+Os botões de abrir e baixar o arquivo original continuam ali.
 
 O texto fica em `public/conteudos/`, um `.md` por documento, apontado pelo campo
 `conteudo`. Formato aceito:

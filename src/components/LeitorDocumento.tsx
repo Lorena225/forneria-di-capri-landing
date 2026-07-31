@@ -74,7 +74,7 @@ function Tabela({ linhas }: { linhas: string[] }) {
         )}
         <tbody>
           {corpo.map((linha, indiceLinha) => (
-            <tr key={indiceLinha} className="align-top even:bg-areia-clara/30">
+            <tr key={indiceLinha} className="align-top even:bg-sereno-claro/25">
               {linha.map((celula, indice) => (
                 <td
                   key={indice}
@@ -117,7 +117,7 @@ function renderizar(texto: string): ReactNode[] {
       ) : (
         <ul
           key={`lista-${chave++}`}
-          className="my-4 list-disc space-y-1.5 pl-5 text-[0.9375rem] text-grafite marker:text-argila/60"
+          className="my-4 list-disc space-y-1.5 pl-5 text-[0.9375rem] text-grafite marker:text-sereno"
         >
           {conteudo}
         </ul>
@@ -250,7 +250,7 @@ export function LeitorDocumento({ caminho, arquivo, titulo }: Props) {
   }, [caminho])
 
   return (
-    <div className="mt-6 rounded-lg border border-linha bg-areia-clara/40 px-5 py-6 sm:px-7">
+    <div className="mt-6 mt-8 rounded-xl border border-linha bg-sereno-claro/30 px-5 py-6 sm:px-7">
       <p className="rotulo-tecnico mb-4 border-b border-linha pb-3">Conteúdo do documento</p>
 
       {erro ? (

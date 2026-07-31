@@ -15,6 +15,7 @@ export const hero = {
 }
 
 export const resumo = {
+  eyebrow: 'O que foi construído',
   titulo: 'Resumo da consultoria',
   texto:
     'Ao longo desta consultoria, a VirtruvIA estruturou uma base estratégica para duas instituições do setor educacional, organizando marca, marketing e operação comercial com uma visão prática de crescimento. O trabalho foi conduzido para transformar decisões dispersas em direcionamentos mais claros, consistentes e acionáveis no dia a dia.',
@@ -36,6 +37,8 @@ export interface MiniCase {
   entregas: string
   foco: string
 }
+
+export const tituloInstituicoes = 'Duas operações, dois desafios'
 
 export const miniCases: MiniCase[] = [
   {
@@ -69,16 +72,18 @@ export const miniCases: MiniCase[] = [
 export const secaoAreas = {
   titulo: 'Áreas da consultoria',
   subtitulo:
-    'Os materiais foram reorganizados por macroárea para facilitar a navegação e tornar a consulta mais intuitiva entre estratégia, marketing e operação comercial.',
+    'Os materiais foram reorganizados por macroárea para tornar a consulta mais intuitiva entre estratégia, marketing e operação comercial.',
   introducao:
-    'Em vez de visualizar apenas as etapas do projeto, você pode acessar os conteúdos por área de atuação. Assim, a leitura fica mais clara para quem deseja consultar rapidamente o que pertence à base estratégica, ao marketing ou ao comercial.',
+    'Em vez de percorrer as etapas do projeto, você entra pela área que interessa no momento. Escolha um dos três caminhos abaixo e o acervo se ajusta ao que pertence àquela frente.',
+  chamada: 'Toque em uma área para ver seus materiais',
 }
 
 export const secaoMateriais = {
+  titulo: 'Acervo de entregas',
   acimaDoFiltro:
-    'Navegue pelos materiais da consultoria e filtre por instituição para visualizar os documentos de cada frente.',
+    'Percorra os materiais da consultoria e filtre por área ou instituição para chegar direto ao que interessa. Cada material abre com sua ficha completa, pronto para leitura ou download.',
   apoio:
-    'Selecione uma instituição para visualizar os materiais com mais contexto e objetividade.',
+    'Selecione uma instituição para ver os materiais no contexto de cada operação.',
   /** Mensagem única de estado vazio, usada em cards, popups e listagens. */
   vazio:
     'Esta frente está em desenvolvimento e será atualizada conforme os materiais forem finalizados.',

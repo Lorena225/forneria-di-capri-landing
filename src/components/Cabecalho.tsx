@@ -1,67 +1,51 @@
-import { CampoPesquisa } from './CampoPesquisa'
-import { SeletorInstituicao } from './SeletorInstituicao'
-import type { FiltroInstituicao } from '../lib/utils'
+const navegacao = [
+  { href: '#resumo', rotulo: 'Resumo' },
+  { href: '#instituicoes', rotulo: 'Instituições' },
+  { href: '#areas', rotulo: 'Áreas' },
+  { href: '#acervo', rotulo: 'Acervo' },
+]
 
-interface Props {
-  busca: string
-  aoBuscar: (valor: string) => void
-  instituicao: FiltroInstituicao
-  aoTrocarInstituicao: (valor: FiltroInstituicao) => void
-}
-
-export function Cabecalho({ busca, aoBuscar, instituicao, aoTrocarInstituicao }: Props) {
+export function Cabecalho() {
   return (
     <header className="sticky top-0 z-40 border-b border-linha bg-papel/90 backdrop-blur-md">
-      <div className="mx-auto max-w-conteudo px-5 sm:px-8">
-        <div className="flex h-[4.5rem] items-center justify-between gap-6">
-          <a
-            href="#topo"
-            className="flex shrink-0 items-center gap-4 rounded-sm"
-            aria-label="VirtruvIA — Consultoria estratégica"
-          >
-            {/* Para trocar o logotipo, substitua public/logo-virtruvia.png */}
-            <img
-              src="/logo-virtruvia.png"
-              alt=""
-              className="h-7 w-auto sm:h-8"
-              width={559}
-              height={200}
-            />
-            <span aria-hidden="true" className="hidden h-8 w-px bg-pedra/40 sm:block" />
-            <span className="hidden flex-col leading-tight sm:flex">
-              <span className="text-[0.9375rem] font-medium tracking-[0.12em] text-tinta">
-                VIRTRUVIA
-              </span>
-              <span className="rotulo text-[0.625rem]">Consultoria estratégica</span>
-            </span>
-          </a>
-
-          <div className="flex flex-1 items-center justify-end gap-3">
-            <CampoPesquisa
-              id="pesquisa-cabecalho"
-              valor={busca}
-              aoAlterar={aoBuscar}
-              placeholder="Pesquisar materiais"
-              className="hidden w-full max-w-xs lg:block"
-            />
-            <SeletorInstituicao
-              id="instituicao-cabecalho"
-              valor={instituicao}
-              aoAlterar={aoTrocarInstituicao}
-              className="w-[11.5rem] shrink-0 max-[380px]:w-[9rem]"
-            />
-          </div>
-        </div>
-
-        {/* Pesquisa em linha própria em telas menores */}
-        <div className="pb-4 lg:hidden">
-          <CampoPesquisa
-            id="pesquisa-cabecalho-movel"
-            valor={busca}
-            aoAlterar={aoBuscar}
-            placeholder="Pesquisar materiais"
+      <div className="mx-auto flex h-[4.5rem] max-w-conteudo items-center justify-between gap-6 px-5 sm:px-8">
+        <a
+          href="#topo"
+          className="flex shrink-0 items-center gap-4"
+          aria-label="VirtruvIA — Consultoria estratégica"
+        >
+          <img
+            src="/logo-virtruvia.png"
+            alt=""
+            className="h-7 w-auto sm:h-8"
+            width={179}
+            height={64}
           />
-        </div>
+          <span aria-hidden="true" className="hidden h-8 w-px bg-pedra/30 sm:block" />
+          <span className="hidden flex-col leading-tight sm:flex">
+            <span className="text-[0.9375rem] font-medium tracking-[0.14em] text-tinta">
+              VIRTRUVIA
+            </span>
+            <span className="text-[0.625rem] font-medium uppercase tracking-[0.2em] text-pedra-escura">
+              Consultoria estratégica
+            </span>
+          </span>
+        </a>
+
+        <nav aria-label="Seções da página">
+          <ul className="flex items-center gap-1 sm:gap-2">
+            {navegacao.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className="rounded-full px-3 py-2 text-[0.8125rem] font-medium text-sereno-forte transition-colors duration-200 hover:bg-sereno-claro hover:text-tinta max-[420px]:px-2 max-[420px]:text-[0.75rem]"
+                >
+                  {item.rotulo}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </header>
   )

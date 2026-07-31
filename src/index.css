@@ -7,24 +7,24 @@
    Paleta oficial e neutros de apoio. Altere aqui para mudar a página inteira.
    ========================================================================= */
 :root {
-  /* --- paleta oficial (valores em R G B, para permitir transparências) --- */
-  --vtr-argila: 176 115 69; /* #b07345 — acolhedor e autêntico — destaque da marca */
-  --vtr-argila-forte: 138 87 50; /* #8a5732 — variação escura, para botões e texto */
-  --vtr-areia: 219 194 180; /* #dbc2b4 — suave e harmônico — hero e superfícies quentes */
-  --vtr-areia-clara: 242 233 225; /* #f2e9e1 — fundos sutis */
-  --vtr-pedra: 139 132 125; /* #8b847d — sofisticado e equilibrado — bordas e apoio */
-  --vtr-pedra-escura: 110 103 95; /* #6e675f — variação escura, para legendas */
-  --vtr-sereno: 133 155 164; /* #859ba4 — profissional e sereno — elementos técnicos */
-  --vtr-sereno-forte: 95 114 123; /* #5f727b — variação escura, para rótulos */
-  --vtr-sereno-claro: 231 237 239; /* #e7edef — fundo de badges e filtros */
+  /* --- paleta oficial (R G B, para permitir transparências) --- */
+  --vtr-profundo: 44 57 63; /* #2c393f — azul profundo — hero e rodapé */
+  --vtr-profundo-claro: 58 75 82; /* #3a4b52 — variação do profundo, para superfícies internas */
+  --vtr-sereno: 133 155 164; /* #859ba4 — azul da marca — apoio, badges e navegação */
+  --vtr-sereno-forte: 95 114 123; /* #5f727b — variação escura, para rótulos e pills ativas */
+  --vtr-sereno-claro: 231 237 239; /* #e7edef — faixas técnicas e fundos de filtro */
+  --vtr-argila: 176 115 69; /* #b07345 — destaque da marca */
+  --vtr-argila-forte: 138 87 50; /* #8a5732 — CTAs e texto de destaque */
+  --vtr-areia: 219 194 180; /* #dbc2b4 — calor secundário — detalhes e acentos leves */
+  --vtr-pedra: 139 132 125; /* #8b847d — bordas e detalhes */
+  --vtr-pedra-escura: 110 103 95; /* #6e675f — subtítulos e textos auxiliares */
 
   /* --- neutros de apoio --- */
-  --vtr-papel: 251 248 245; /* #fbf8f5 — fundo da página */
-  --vtr-superficie: 255 255 255; /* #ffffff — cards e popups */
-  --vtr-tinta: 43 38 34; /* #2b2622 — títulos e texto principal */
-  --vtr-grafite: 74 68 62; /* #4a443e — texto corrido */
-  --vtr-escuro: 38 34 31; /* #26221f — rodapé */
-  --vtr-linha: 227 220 212; /* #e3dcd4 — bordas discretas */
+  --vtr-papel: 247 249 250; /* #f7f9fa — fundo da página */
+  --vtr-superficie: 255 255 255; /* #ffffff — cards e modais */
+  --vtr-tinta: 26 33 36; /* #1a2124 — títulos e texto principal */
+  --vtr-grafite: 62 71 75; /* #3e474b — texto corrido */
+  --vtr-linha: 224 229 231; /* #e0e5e7 — bordas discretas */
 }
 
 @layer base {
@@ -45,7 +45,7 @@
   }
 
   ::selection {
-    background: rgb(var(--vtr-areia));
+    background: rgb(var(--vtr-sereno-claro));
     color: rgb(var(--vtr-tinta));
   }
 
@@ -95,11 +95,26 @@
   }
 
   .botao-principal {
-    @apply inline-flex items-center gap-2 rounded-md bg-argila-forte px-5 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-tinta;
+    @apply inline-flex items-center gap-2 rounded-full bg-argila-forte px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:bg-argila hover:shadow-card;
   }
 
   .botao-secundario {
-    @apply inline-flex items-center gap-2 rounded-md border border-linha bg-superficie px-5 py-3 text-sm font-medium text-tinta transition-colors duration-200 hover:border-argila/50 hover:bg-areia-clara;
+    @apply inline-flex items-center gap-2 rounded-full border border-linha bg-superficie px-6 py-3 text-sm font-medium text-tinta transition-all duration-300 hover:border-sereno hover:bg-sereno-claro/60;
+  }
+
+  .botao-claro {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-medium text-white transition-colors duration-300 hover:bg-white/20;
+  }
+
+  /* pill de filtro */
+  .pill {
+    @apply rounded-full px-4 py-2 text-[0.8125rem] font-medium transition-all duration-200;
+  }
+  .pill-inativa {
+    @apply text-sereno-forte hover:bg-superficie hover:text-tinta;
+  }
+  .pill-ativa {
+    @apply bg-sereno-forte text-white shadow-sm;
   }
 }
 

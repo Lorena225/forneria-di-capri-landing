@@ -25,6 +25,11 @@ export interface Documento {
   arquivo: string
   /** Texto do documento exibido na própria página, em public/conteudos/ */
   conteudo?: string
+  /**
+   * Versão em PDF do material, quando o arquivo original for DOCX ou XLSX.
+   * Preenchido, a ficha do documento passa a oferecer também "Baixar em PDF".
+   */
+  arquivoPdf?: string
 }
 
 export interface Escola {

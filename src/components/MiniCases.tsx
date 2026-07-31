@@ -1,4 +1,4 @@
-import { miniCases, type MiniCase } from '../data/textos'
+import { miniCases, tituloInstituicoes, type MiniCase } from '../data/textos'
 import { cn } from '../lib/utils'
 
 const blocos = (caso: MiniCase) => [
@@ -9,21 +9,24 @@ const blocos = (caso: MiniCase) => [
 
 export function MiniCases() {
   return (
-    <section className="mx-auto max-w-conteudo px-5 py-20 sm:px-8 sm:py-24">
+    <section id="instituicoes" className="mx-auto max-w-conteudo scroll-mt-24 px-5 py-24 sm:px-8 sm:py-28">
       <p className="rotulo-tecnico">Instituições atendidas</p>
+      <h2 className="mt-4 max-w-[22ch] font-display text-4xl font-light leading-tight text-tinta sm:text-5xl">
+        {tituloInstituicoes}
+      </h2>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-8">
         {miniCases.map((caso, indice) => (
           <article
             key={caso.id}
             style={{ animationDelay: `${indice * 90}ms` }}
-            className="flex animate-surgir flex-col overflow-hidden rounded-lg border border-linha bg-superficie shadow-card"
+            className="flex animate-surgir flex-col overflow-hidden rounded-2xl border border-linha bg-superficie shadow-card"
           >
             <span
               aria-hidden="true"
               className={cn(
                 'h-1 w-full',
-                indice === 0 ? 'bg-argila' : 'bg-sereno',
+                indice === 0 ? 'bg-sereno' : 'bg-argila',
               )}
             />
 
