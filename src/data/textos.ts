@@ -97,7 +97,7 @@ export const secaoMateriais = {
 
 export const rodape = {
   institucional:
-    'Na VirtruvIA, acreditamos que o marketing eficaz combina tecnologia, dados e emoção humana para gerar resultados concretos, consistentes e verdadeiros no mundo real.',
-  linhaFinal: 'VirtruvIA — equilíbrio entre arte, tecnologia e humanismo.',
+    'Na VirtruvIA, marketing não é tentativa e erro nem ações isoladas. Estruturamos marketing como sistema: estratégia clara, dados orientando decisões e execução contínua. Cada ação faz parte de uma engrenagem que aprende, evolui e gera crescimento previsível.',
+  linhaFinal: 'Mais do que presença, construímos direção.',
   contato: 'agenciavirtruvia@gmail.com',
 }
