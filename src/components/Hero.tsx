@@ -1,5 +1,6 @@
 import { ArrowDown } from 'lucide-react'
 import { hero } from '../data/textos'
+import { buscarEscola } from '../data/documentos'
 
 export function Hero() {
   return (
@@ -250,19 +251,48 @@ export function Hero() {
             Conhecer as áreas
             <ArrowDown aria-hidden="true" strokeWidth={1.5} className="h-4 w-4" />
           </a>
-          <p
+          {/* Logos das escolas — sutis, sem container */}
+          <div
             style={{
-              fontSize: '0.6875rem',
-              fontWeight: 500,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              color: 'rgba(44,57,63,0.45)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1.25rem',
             }}
           >
-            Ineprotec
-            <span aria-hidden="true" style={{ margin: '0 0.5rem', opacity: 0.5 }}>·</span>
-            Matrícula EAD
-          </p>
+            <img
+              src={buscarEscola('ineprotec').logo}
+              alt="Ineprotec"
+              style={{
+                height: '22px',
+                width: 'auto',
+                maxWidth: '110px',
+                objectFit: 'contain',
+                opacity: 0.45,
+                filter: 'saturate(0) brightness(0.25)',
+              }}
+            />
+            <span
+              aria-hidden="true"
+              style={{
+                display: 'block',
+                width: '1px',
+                height: '16px',
+                background: 'rgba(44,57,63,0.2)',
+              }}
+            />
+            <img
+              src={buscarEscola('matricula-ead').logo}
+              alt="Matrícula EAD"
+              style={{
+                height: '22px',
+                width: 'auto',
+                maxWidth: '110px',
+                objectFit: 'contain',
+                opacity: 0.45,
+                filter: 'saturate(0) brightness(0.25)',
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>
