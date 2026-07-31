@@ -8,7 +8,7 @@ export const hero = {
   titulo:
     'Entregas estratégicas para transformar posicionamento, marketing e operação comercial.',
   subtitulo:
-    'Nesta página, reunimos os materiais, direcionamentos e documentos desenvolvidos pela VirtruvIA para a Ineprotec e a Matrícula EAD, com foco em clareza de marca, estrutura comercial e crescimento sustentável.',
+    'Nesta página, reunimos os materiais, direcionamentos e documentos desenvolvidos pela VirtruvIA para o Ineprotec e a Matrícula EAD, com foco em clareza de marca, estrutura comercial e crescimento sustentável.',
 }
 
 export const resumo = {
@@ -44,7 +44,7 @@ export const miniCases: MiniCase[] = [
     subtitulo:
       'Formação técnica com posicionamento mais claro, comunicação mais estratégica e base comercial mais organizada.',
     texto:
-      'Para a Ineprotec, a consultoria foi desenhada para fortalecer a percepção de marca, estruturar melhor a comunicação e apoiar uma operação mais coerente entre proposta de valor, marketing e comercial. O objetivo foi transformar o crescimento em algo menos improvisado e mais orientado por estratégia, clareza e consistência.',
+      'Para o Ineprotec, a consultoria foi desenhada para fortalecer a percepção de marca, estruturar melhor a comunicação e apoiar uma operação mais coerente entre proposta de valor, marketing e comercial. O objetivo foi transformar o crescimento em algo menos improvisado e mais orientado por estratégia, clareza e consistência.',
     desafio:
       'Organizar a presença da marca e alinhar comunicação, estratégia e operação comercial para sustentar crescimento com mais clareza.',
     entregas:

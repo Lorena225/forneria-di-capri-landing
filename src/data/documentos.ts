@@ -72,7 +72,7 @@ export const escolas: Escola[] = [
   {
     id: 'matricula-ead',
     nome: 'Matrícula EAD',
-    descricao: 'Graduação e pós-graduação a distância',
+    descricao: 'Gestora de Polos Técnicos',
     logo: 'https://matriculaead-landing.vercel.app/images/logo.png',
   },
 ]
@@ -163,7 +163,7 @@ export const documentos: Documento[] = [
     id: 'documento-01',
     titulo: 'Brandbook Ineprotec',
     descricao:
-      'Documento de marca da Ineprotec: essência, atributos, identidade visual e diretrizes de aplicação da comunicação.',
+      'Documento de marca do Ineprotec: essência, atributos, identidade visual e diretrizes de aplicação da comunicação.',
     escolas: ['ineprotec'],
     area: 'fundacao-estrategica',
     categoria: 'Posicionamento de marca',
@@ -182,6 +182,31 @@ export const documentos: Documento[] = [
     tipo: 'Link',
     dataAtualizacao: '29/07/2026',
     arquivo: 'https://branding-matriculaead.manus.space/',
+  },
+
+  {
+    id: 'documento-pm-ineprotec',
+    titulo: 'Pesquisa de mercado — Ineprotec 2026',
+    descricao:
+      'Relatório completo de pesquisa de mercado do Ineprotec: análise de cenário, concorrência, público-alvo e oportunidades estratégicas para 2026.',
+    escolas: ['ineprotec'],
+    area: 'fundacao-estrategica',
+    categoria: 'Pesquisa de mercado',
+    tipo: 'DOCX',
+    dataAtualizacao: '31/07/2026',
+    arquivo: '/documentos/pesquisa-mercado-ineprotec-2026.docx',
+  },
+  {
+    id: 'documento-pm-matricula-ead',
+    titulo: 'Pesquisa de mercado — Matrícula EAD 2026',
+    descricao:
+      'Relatório completo de pesquisa de mercado da Matrícula EAD: análise de cenário, concorrência, público-alvo e oportunidades estratégicas para 2026.',
+    escolas: ['matricula-ead'],
+    area: 'fundacao-estrategica',
+    categoria: 'Pesquisa de mercado',
+    tipo: 'DOCX',
+    dataAtualizacao: '31/07/2026',
+    arquivo: '/documentos/pesquisa-mercado-matricula-ead-2026.docx',
   },
 
   // ----- Marketing ------------------------------------------------------
