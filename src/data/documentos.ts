@@ -36,6 +36,13 @@ export interface Escola {
   id: EscolaId
   nome: string
   descricao: string
+  /**
+   * Logotipo oficial da instituição.
+   * Hoje aponta para o site oficial de cada escola. Para hospedar no próprio
+   * projeto, baixe o arquivo, salve em public/logos/ e troque o caminho aqui
+   * (ex.: '/logos/ineprotec.png').
+   */
+  logo: string
 }
 
 export interface Area {
@@ -60,13 +67,18 @@ export const escolas: Escola[] = [
     id: 'ineprotec',
     nome: 'Ineprotec',
     descricao: 'Cursos técnicos e profissionalizantes',
+    logo: 'https://ineprotec-landing.vercel.app/logo-ineprotec.png',
   },
   {
     id: 'matricula-ead',
     nome: 'Matrícula EAD',
     descricao: 'Graduação e pós-graduação a distância',
+    logo: 'https://matriculaead-landing.vercel.app/images/logo.png',
   },
 ]
+
+export const buscarEscola = (id: EscolaId): Escola =>
+  escolas.find((escola) => escola.id === id) as Escola
 
 export const nomeEscola = (id: EscolaId): string =>
   escolas.find((escola) => escola.id === id)?.nome ?? id

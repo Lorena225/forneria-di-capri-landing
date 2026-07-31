@@ -75,7 +75,32 @@ src/
 
 ---
 
-## 1. Trocar o logotipo
+## 0. Logotipos das instituições
+
+Os cards das instituições, os grupos de materiais e o modal exibem o logotipo
+oficial de cada escola. Hoje eles são carregados dos sites oficiais:
+
+```ts
+// src/data/documentos.ts
+logo: 'https://ineprotec-landing.vercel.app/logo-ineprotec.png'
+logo: 'https://matriculaead-landing.vercel.app/images/logo.png'
+```
+
+**Para hospedar no próprio projeto** (recomendado, para não depender dos sites):
+
+1. Baixe os dois arquivos pelos endereços acima.
+2. Salve em `public/logos/` como `ineprotec.png` e `matricula-ead.png`.
+3. Troque o campo `logo` de cada escola em `src/data/documentos.ts` para
+   `/logos/ineprotec.png` e `/logos/matricula-ead.png`.
+
+Os logotipos aparecem dentro de um container branco arredondado, com altura fixa
+e `object-contain` — a proporção nunca é distorcida. Se algum logotipo for claro
+demais para fundo branco, ajuste o container em
+`src/components/LogoEscola.tsx` (troque `bg-white` por `bg-profundo`).
+
+---
+
+## 1. Trocar o logotipo da VirtruvIA
 
 Substitua `public/logo-virtruvia.png`, mantendo o nome. Use PNG com fundo
 transparente e altura mínima de 300 px. No rodapé ele é exibido em branco

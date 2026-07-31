@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { ArrowUpRight, X } from 'lucide-react'
 import type { Area, Documento, EscolaId } from '../data/documentos'
-import { ehLinkExterno, escolas, rotuloEscolas } from '../data/documentos'
+import { ehLinkExterno, escolas } from '../data/documentos'
+import { LogoEscola } from './LogoEscola'
 import { painel } from '../data/textos'
 import { cn, ordenarPorData } from '../lib/utils'
 import type { FiltroInstituicao } from '../lib/utils'
@@ -19,6 +20,8 @@ interface Props {
 interface Grupo {
   chave: string
   rotulo: string
+  /** Logos exibidas no cabeçalho do grupo (duas, quando o material é comum). */
+  logos: EscolaId[]
   documentos: Documento[]
 }
 
@@ -31,7 +34,12 @@ function agrupar(documentos: Documento[]): Grupo[] {
   const grupos: Grupo[] = []
 
   if (comuns.length > 0) {
-    grupos.push({ chave: 'comum', rotulo: painel.grupoComum, documentos: comuns })
+    grupos.push({
+      chave: 'comum',
+      rotulo: painel.grupoComum,
+      logos: escolas.map((escola) => escola.id as EscolaId),
+      documentos: comuns,
+    })
   }
 
   escolas.forEach((escola) => {
@@ -39,7 +47,12 @@ function agrupar(documentos: Documento[]): Grupo[] {
       (doc) => doc.escolas.length === 1 && doc.escolas[0] === (escola.id as EscolaId),
     )
     if (lista.length > 0) {
-      grupos.push({ chave: escola.id, rotulo: escola.nome, documentos: lista })
+      grupos.push({
+        chave: escola.id,
+        rotulo: escola.nome,
+        logos: [escola.id as EscolaId],
+        documentos: lista,
+      })
     }
   })
 
@@ -150,18 +163,23 @@ export function PainelArea({
         ) : (
           grupos.map((grupo) => (
             <section key={grupo.chave} className="py-8">
-              <div className="flex items-center gap-4">
-                <h5 className="shrink-0 text-[0.75rem] font-medium uppercase tracking-[0.18em] text-sereno-forte">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-3 rounded-xl border border-linha bg-sereno-claro/30 px-5 py-4">
+                <span className="flex items-center gap-2">
+                  {grupo.logos.map((id) => (
+                    <LogoEscola key={id} escola={id} tamanho="pequeno" />
+                  ))}
+                </span>
+                <h5 className="text-[0.8125rem] font-medium uppercase tracking-[0.16em] text-sereno-forte">
                   {grupo.rotulo}
                 </h5>
-                <span aria-hidden="true" className="h-px flex-1 bg-linha" />
-                <span className="shrink-0 text-[0.75rem] text-pedra-escura">
+                <span aria-hidden="true" className="hidden h-px flex-1 bg-sereno/30 sm:block" />
+                <span className="text-[0.75rem] text-pedra-escura">
                   {grupo.documentos.length}{' '}
                   {grupo.documentos.length === 1 ? 'material' : 'materiais'}
                 </span>
               </div>
 
-              <ul className="mt-5 grid gap-3">
+              <ul className="mt-5 grid gap-3 sm:pl-2">
                 {grupo.documentos.map((documento) => {
                   const externo = ehLinkExterno(documento)
                   return (
@@ -206,5 +224,3 @@ export function PainelArea({
     </div>
   )
 }
-
-export { rotuloEscolas }

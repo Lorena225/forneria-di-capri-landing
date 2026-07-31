@@ -3,6 +3,7 @@ import { ArrowUpRight, BookOpen, Download, X } from 'lucide-react'
 import type { Documento } from '../data/documentos'
 import { buscarArea, ehLinkExterno, rotuloEscolas } from '../data/documentos'
 import { LeitorDocumento } from './LeitorDocumento'
+import { LogoEscola } from './LogoEscola'
 
 interface Props {
   documento: Documento
@@ -106,6 +107,11 @@ export function ModalDocumento({ documento, aoFechar }: Props) {
         <div className="shrink-0 border-b border-linha bg-sereno-claro/40 px-6 pb-7 pt-7 sm:px-10 sm:pt-9">
           <div className="flex items-start justify-between gap-6">
             <div>
+              <span className="mb-5 flex flex-wrap items-center gap-2">
+                {documento.escolas.map((id) => (
+                  <LogoEscola key={id} escola={id} tamanho="pequeno" />
+                ))}
+              </span>
               <p className="text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-sereno-forte">
                 {area.nome}
               </p>
