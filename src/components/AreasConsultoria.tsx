@@ -1,4 +1,5 @@
 import { ArrowRight, MousePointerClick } from 'lucide-react'
+import { useState } from 'react'
 import type { AreaId } from '../data/documentos'
 import { areas } from '../data/documentos'
 import type { ReactNode } from 'react'
@@ -9,11 +10,10 @@ interface Props {
   areaSelecionada: AreaId | null
   aoSelecionar: (id: AreaId) => void
   quantidadePorArea: Map<string, number>
-  /** Painel dinâmico exibido abaixo dos cards quando há área selecionada. */
   painel?: ReactNode
 }
 
-/* Paleta por acento — cores sólidas para os CTAs */
+/* Paleta completa por acento */
 const acentos = {
   sereno: {
     barra: 'bg-sereno',
@@ -21,11 +21,14 @@ const acentos = {
     icone: 'text-sereno-forte',
     marcador: 'bg-sereno',
     anel: 'ring-sereno',
-    /* CTA sólido */
-    ctaBg: '#5f727b',       /* sereno-forte */
-    ctaBgHover: '#4a5d65',
+    /* Cores brutas para uso inline */
+    rgb: '133,155,164',
+    ctaBg: '#5f727b',
     ctaBgAtivo: '#3a4b52',
-    /* Gradiente de fundo sutil no card */
+    /* Fundo hover — mais saturado e visível */
+    hoverBg: 'linear-gradient(160deg, rgba(133,155,164,0.22) 0%, rgba(133,155,164,0.10) 100%)',
+    hoverBorder: '#859ba4',
+    /* Fundo padrão sutil */
     gradiente: 'linear-gradient(160deg, rgba(133,155,164,0.07) 0%, rgba(133,155,164,0.0) 60%)',
   },
   argila: {
@@ -34,9 +37,11 @@ const acentos = {
     icone: 'text-argila-forte',
     marcador: 'bg-argila',
     anel: 'ring-argila',
-    ctaBg: '#b07345',       /* argila */
-    ctaBgHover: '#8a5732',
+    rgb: '176,115,69',
+    ctaBg: '#b07345',
     ctaBgAtivo: '#6e4226',
+    hoverBg: 'linear-gradient(160deg, rgba(176,115,69,0.20) 0%, rgba(176,115,69,0.08) 100%)',
+    hoverBorder: '#b07345',
     gradiente: 'linear-gradient(160deg, rgba(176,115,69,0.08) 0%, rgba(176,115,69,0.0) 60%)',
   },
   pedra: {
@@ -45,9 +50,11 @@ const acentos = {
     icone: 'text-pedra-escura',
     marcador: 'bg-pedra',
     anel: 'ring-pedra',
-    ctaBg: '#6e675f',       /* pedra-escura */
-    ctaBgHover: '#58524b',
+    rgb: '139,132,125',
+    ctaBg: '#6e675f',
     ctaBgAtivo: '#44403a',
+    hoverBg: 'linear-gradient(160deg, rgba(139,132,125,0.22) 0%, rgba(139,132,125,0.10) 100%)',
+    hoverBorder: '#8b847d',
     gradiente: 'linear-gradient(160deg, rgba(139,132,125,0.08) 0%, rgba(139,132,125,0.0) 60%)',
   },
 } as const
@@ -58,6 +65,8 @@ export function AreasConsultoria({
   quantidadePorArea,
   painel,
 }: Props) {
+  const [hoverId, setHoverId] = useState<string | null>(null)
+
   return (
     <section id="areas" className="border-t border-linha bg-superficie">
       <div className="mx-auto max-w-conteudo px-5 py-24 sm:px-8 sm:py-28">
@@ -76,7 +85,7 @@ export function AreasConsultoria({
           </p>
         </div>
 
-        {/* Chamada de ação — instrução explícita */}
+        {/* Instrução de interação */}
         <p className="mt-14 flex items-center gap-3 text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-pedra-escura">
           <MousePointerClick aria-hidden="true" className="h-4 w-4 text-argila" strokeWidth={1.5} />
           {secaoAreas.chamada}
@@ -88,6 +97,20 @@ export function AreasConsultoria({
             const cor = acentos[area.acento]
             const quantidade = quantidadePorArea.get(area.id) ?? 0
             const ativa = areaSelecionada === area.id
+            const emHover = hoverId === area.id
+
+            /* Fundo dinâmico: ativo > hover > padrão */
+            const bgCard = ativa
+              ? cor.hoverBg
+              : emHover
+                ? cor.hoverBg
+                : cor.gradiente
+
+            /* Borda dinâmica */
+            const borderCard = ativa || emHover ? cor.hoverBorder : 'transparent'
+            const boxShadow = emHover || ativa
+              ? `0 8px 32px rgba(${cor.rgb}, 0.25), 0 2px 8px rgba(${cor.rgb}, 0.15)`
+              : 'none'
 
             return (
               <button
@@ -96,26 +119,30 @@ export function AreasConsultoria({
                 aria-pressed={ativa}
                 aria-controls="painel-da-area"
                 onClick={() => aoSelecionar(area.id)}
+                onMouseEnter={() => setHoverId(area.id)}
+                onMouseLeave={() => setHoverId(null)}
                 style={{
                   animationDelay: `${indice * 90}ms`,
-                  background: ativa
-                    ? cor.gradiente.replace('0.07', '0.14').replace('0.08', '0.14')
-                    : cor.gradiente,
+                  background: bgCard,
+                  border: `2px solid ${borderCard}`,
+                  boxShadow,
                   cursor: 'pointer',
+                  transform: emHover || ativa ? 'translateY(-6px)' : 'translateY(0)',
+                  transition: 'all 0.28s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
                 className={cn(
-                  'group flex animate-surgir flex-col overflow-hidden rounded-2xl border bg-superficie text-left',
-                  'transition-all duration-300 hover:-translate-y-1.5 hover:shadow-alto',
-                  ativa
-                    ? cn('border-transparent shadow-alto ring-2', cor.anel)
-                    : 'border-linha hover:border-transparent',
+                  'group flex animate-surgir flex-col overflow-hidden rounded-2xl bg-superficie text-left',
+                  ativa ? cn('ring-2', cor.anel) : '',
                 )}
               >
-                {/* Barra de cor no topo — mais espessa */}
+                {/* Barra de cor no topo */}
                 <span
                   aria-hidden="true"
-                  className={cn('h-1.5 w-full transition-all duration-300', cor.barra)}
-                  style={{ opacity: ativa ? 1 : 0.7 }}
+                  className={cn('h-1.5 w-full', cor.barra)}
+                  style={{
+                    opacity: ativa || emHover ? 1 : 0.65,
+                    transition: 'opacity 0.28s',
+                  }}
                 />
 
                 <span className="flex flex-1 flex-col px-7 py-8 sm:px-8">
@@ -130,7 +157,11 @@ export function AreasConsultoria({
                     <Icone
                       aria-hidden="true"
                       strokeWidth={1.25}
-                      className={cn('h-6 w-6 transition-transform duration-300 group-hover:scale-110', cor.icone)}
+                      style={{
+                        transform: emHover ? 'scale(1.15)' : 'scale(1)',
+                        transition: 'transform 0.28s',
+                      }}
+                      className={cn('h-6 w-6', cor.icone)}
                     />
                   </span>
 
@@ -160,7 +191,7 @@ export function AreasConsultoria({
                     ))}
                   </span>
 
-                  {/* CTA — botão sólido com cor forte */}
+                  {/* CTA sólido */}
                   <span className="mt-8 block">
                     <span
                       aria-hidden="true"
@@ -170,14 +201,13 @@ export function AreasConsultoria({
                         justifyContent: 'space-between',
                         padding: '0.75rem 1.125rem',
                         borderRadius: '0.625rem',
-                        background: ativa ? cor.ctaBgAtivo : cor.ctaBg,
+                        background: ativa ? cor.ctaBgAtivo : emHover ? cor.ctaBgAtivo : cor.ctaBg,
                         color: '#fff',
                         fontSize: '0.875rem',
                         fontWeight: 500,
                         letterSpacing: '0.01em',
-                        transition: 'background 0.25s, transform 0.2s',
+                        transition: 'background 0.25s',
                       }}
-                      className="group-hover:brightness-90"
                     >
                       <span>
                         {ativa ? 'Materiais abertos abaixo' : 'Ver os materiais'}
@@ -189,7 +219,7 @@ export function AreasConsultoria({
                           alignItems: 'center',
                           gap: '0.375rem',
                           fontSize: '0.8125rem',
-                          opacity: 0.85,
+                          opacity: 0.9,
                         }}
                       >
                         {quantidade > 0
@@ -201,9 +231,9 @@ export function AreasConsultoria({
                           style={{
                             height: '0.9rem',
                             width: '0.9rem',
-                            transition: 'transform 0.3s',
+                            transform: emHover ? 'translateX(4px)' : 'translateX(0)',
+                            transition: 'transform 0.28s',
                           }}
-                          className="group-hover:translate-x-1"
                         />
                       </span>
                     </span>
