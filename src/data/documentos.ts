@@ -211,6 +211,33 @@ export const documentos: Documento[] = [
 
   // ----- Marketing ------------------------------------------------------
   {
+    id: 'documento-ps-ineprotec',
+    titulo: 'Planejamento estratégico de conteúdo — Ineprotec',
+    descricao:
+      'Direção do semestre de agosto a dezembro de 2026: território de mensagem, públicos prioritários, cinco pilares editoriais, frequência de feed e stories, estrutura semanal fixa, CTAs padronizados e metas de mensuração.',
+    escolas: ['ineprotec'],
+    area: 'marketing',
+    categoria: 'Planejamento estratégico',
+    tipo: 'PDF',
+    dataAtualizacao: '31/07/2026',
+    arquivo: '/documentos/planejamento-semestral-conteudo-ineprotec.pdf',
+    conteudo: '/conteudos/planejamento-semestral-conteudo-ineprotec.md',
+  },
+  {
+    id: 'documento-ps-matricula-ead',
+    titulo: 'Planejamento estratégico de conteúdo — Matrícula EAD',
+    descricao:
+      'Direção do semestre de agosto a dezembro de 2026: objetivos de posicionamento e comerciais, os dois públicos prioritários, cinco pilares editoriais com pesos, cursos prioritários, frequência de publicação e estrutura semanal fixa.',
+    escolas: ['matricula-ead'],
+    area: 'marketing',
+    categoria: 'Planejamento estratégico',
+    tipo: 'PDF',
+    dataAtualizacao: '31/07/2026',
+    arquivo: '/documentos/planejamento-semestral-conteudo-matricula-ead.pdf',
+    conteudo: '/conteudos/planejamento-semestral-conteudo-matricula-ead.md',
+  },
+
+  {
     id: 'documento-03',
     titulo: 'Calendário de junho — Ineprotec',
     descricao:
