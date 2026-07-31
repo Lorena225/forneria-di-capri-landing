@@ -5,13 +5,11 @@
    ========================================================================= */
 
 export const hero = {
-  selo: 'VirtruvIA — Marketing Humano e Inovador.',
   titulo:
-    'Entregas estratégicas para transformar posicionamento, marketing e operação comercial.',
+    'Entregas estratégicas para transformar o posicionamento de marca, marketing e operação comercial.',
   subtitulo:
     'Nesta página, reunimos os materiais, direcionamentos e documentos desenvolvidos pela VirtruvIA para a Ineprotec e a Matrícula EAD, com foco em clareza de marca, estrutura comercial e crescimento sustentável.',
-  apoio:
-    'Uma consultoria construída para organizar a comunicação, fortalecer o posicionamento e alinhar estratégia, processo e execução em duas frentes de educação com desafios distintos.',
+  chamada: 'Conhecer as áreas',
 }
 
 export const resumo = {
