@@ -25,6 +25,8 @@ export interface Documento {
   arquivo: string
   /** Texto do documento exibido na própria página, em public/conteudos/ */
   conteudo?: string
+  /** Material em evidência: aparece primeiro no grupo, com destaque visual. */
+  destaque?: boolean
   /**
    * Versão em PDF do material, quando o arquivo original for DOCX ou XLSX.
    * Preenchido, a ficha do documento passa a oferecer também "Baixar em PDF".
@@ -117,6 +119,8 @@ export const areas: Area[] = [
       'Materiais ligados à comunicação, ao calendário estratégico, à presença digital e à construção de relacionamento com o público.',
     itens: [
       'Planejamento estratégico',
+      'Painéis e indicadores',
+      'Páginas de captação',
       'Calendários de marketing',
       'Calendários editoriais',
       'Campanhas',
@@ -210,6 +214,56 @@ export const documentos: Documento[] = [
   },
 
   // ----- Marketing ------------------------------------------------------
+  {
+    id: 'documento-dashboard-executivo',
+    titulo: 'Dashboard executivo — Ineprotec e Matrícula EAD',
+    descricao:
+      'Painel online com a leitura consolidada das duas operações, reunindo os indicadores comerciais e de marketing acompanhados no dia a dia da gestão.',
+    escolas: ['ineprotec', 'matricula-ead'],
+    area: 'marketing',
+    categoria: 'Painéis e indicadores',
+    tipo: 'Link',
+    dataAtualizacao: '31/07/2026',
+    arquivo: 'https://dashboard-mat-ine.vercel.app/',
+    destaque: true,
+  },
+  {
+    id: 'documento-landing-ineprotec',
+    titulo: 'Landing page — Ineprotec',
+    descricao:
+      'Página de captação da Ineprotec, com a apresentação da escola e o caminho até o atendimento comercial.',
+    escolas: ['ineprotec'],
+    area: 'marketing',
+    categoria: 'Páginas de captação',
+    tipo: 'Link',
+    dataAtualizacao: '31/07/2026',
+    arquivo: 'https://ineprotec-landing.vercel.app/',
+  },
+  {
+    id: 'documento-landing-matricula-regular',
+    titulo: 'Landing page — Matrícula EAD | curso técnico regular',
+    descricao:
+      'Página de captação da Matrícula EAD dedicada ao curso técnico regular, para o público que precisa cursar a formação completa.',
+    escolas: ['matricula-ead'],
+    area: 'marketing',
+    categoria: 'Páginas de captação',
+    tipo: 'Link',
+    dataAtualizacao: '31/07/2026',
+    arquivo: 'https://matriculaead-landing.vercel.app/',
+  },
+  {
+    id: 'documento-landing-competencia',
+    titulo: 'Landing page — Matrícula EAD | formação por competência',
+    descricao:
+      'Página de captação dedicada à formação por competência, para o profissional com experiência que busca a avaliação da própria trajetória.',
+    escolas: ['matricula-ead'],
+    area: 'marketing',
+    categoria: 'Páginas de captação',
+    tipo: 'Link',
+    dataAtualizacao: '31/07/2026',
+    arquivo: 'https://virtruvia-landing.vercel.app/',
+  },
+
   {
     id: 'documento-ps-ineprotec',
     titulo: 'Planejamento estratégico de conteúdo — Ineprotec',

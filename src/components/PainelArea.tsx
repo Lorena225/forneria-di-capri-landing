@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { ArrowUpRight, X } from 'lucide-react'
+import { ArrowUpRight, Star, X } from 'lucide-react'
 import type { Area, Documento, EscolaId } from '../data/documentos'
 import { ehLinkExterno, escolas } from '../data/documentos'
 import { LogoEscola } from './LogoEscola'
@@ -73,7 +73,11 @@ export function PainelArea({
   aoFechar,
 }: Props) {
   const refPainel = useRef<HTMLDivElement>(null)
-  const grupos = agrupar(ordenarPorData(documentos))
+  const ordenados = ordenarPorData(documentos)
+  const grupos = agrupar([
+    ...ordenados.filter((doc) => doc.destaque),
+    ...ordenados.filter((doc) => !doc.destaque),
+  ])
 
   /* Ao trocar de área, leva a leitura até o início do painel. */
   useEffect(() => {
@@ -188,9 +192,20 @@ export function PainelArea({
                         type="button"
                         onClick={() => aoAbrirDocumento(documento)}
                         aria-label={`Abrir a ficha de ${documento.titulo}`}
-                        className="group flex w-full items-start justify-between gap-6 rounded-xl border border-linha bg-papel/60 px-6 py-5 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-sereno hover:bg-superficie hover:shadow-card"
+                        className={cn(
+                          'group flex w-full items-start justify-between gap-6 rounded-xl border px-6 py-5 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card',
+                          documento.destaque
+                            ? 'border-argila/40 bg-argila/[0.06] hover:border-argila hover:bg-argila/[0.1]'
+                            : 'border-linha bg-papel/60 hover:border-sereno hover:bg-superficie',
+                        )}
                       >
                         <span className="min-w-0">
+                          {documento.destaque && (
+                            <span className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-argila-forte px-2.5 py-1 text-[0.625rem] font-medium uppercase tracking-[0.14em] text-white">
+                              <Star aria-hidden="true" strokeWidth={2} className="h-3 w-3" />
+                              Em destaque
+                            </span>
+                          )}
                           <span className="block font-display text-[1.25rem] font-normal leading-snug text-tinta transition-colors duration-300 group-hover:text-argila-forte">
                             {documento.titulo}
                           </span>

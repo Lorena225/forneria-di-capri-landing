@@ -180,7 +180,7 @@ Em `src/data/documentos.ts`, acrescente um objeto na lista `documentos`:
 | `area`                  | Itens aceitos em `categoria`                                                                                                                        |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `fundacao-estrategica`  | Pesquisa de mercado · Posicionamento de marca                                                                                                        |
-| `marketing`             | Planejamento estratégico · Calendários de marketing · Calendários editoriais · Campanhas · Conteúdos e posts · Treinamentos de marketing              |
+| `marketing`             | Planejamento estratégico · Painéis e indicadores · Páginas de captação · Calendários de marketing · Calendários editoriais · Campanhas · Conteúdos e posts · Treinamentos de marketing |
 | `comercial`             | Diagnóstico comercial · Processos comerciais · Organização do funil de vendas · Etapas da jornada do lead · Scripts de atendimento · Treinamentos comerciais · Treinamentos de CRM |
 
 Para incluir um item novo no escopo de uma área, acrescente-o ao array `itens` da
@@ -189,8 +189,12 @@ no acervo, com o aviso de frente em desenvolvimento.
 
 **Material comum às duas escolas:** `escolas: ['ineprotec', 'matricula-ead']`.
 
-**Material hospedado fora da página** (brandbook, painel): `tipo: 'Link'` e o endereço
-completo em `arquivo`.
+**Material hospedado fora da página** (brandbook, dashboard, landing page):
+`tipo: 'Link'` e o endereço completo em `arquivo`.
+
+**Material em evidência:** acrescente `destaque: true`. Ele passa a aparecer em
+primeiro lugar dentro do grupo da instituição, com selo "Em destaque" e cartão em
+tom de argila.
 
 **Rótulo do botão de download** — sai automaticamente do campo `tipo`, sem prometer
 PDF onde não existe PDF:
