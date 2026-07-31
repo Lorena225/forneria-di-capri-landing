@@ -4,24 +4,23 @@ import { Hero } from './components/Hero'
 import { ResumoConsultoria } from './components/ResumoConsultoria'
 import { MiniCases } from './components/MiniCases'
 import { AreasConsultoria } from './components/AreasConsultoria'
-import { Acervo, type FiltroArea } from './components/Acervo'
+import { PainelArea } from './components/PainelArea'
 import { ModalDocumento } from './components/ModalDocumento'
 import { Rodape } from './components/Rodape'
 import type { AreaId, Documento } from './data/documentos'
-import { areas, documentos } from './data/documentos'
+import { areas, buscarArea, documentos } from './data/documentos'
 import type { FiltroInstituicao } from './lib/utils'
 import { filtrarDocumentos } from './lib/utils'
 
 export default function App() {
   const [instituicao, setInstituicao] = useState<FiltroInstituicao>('todos')
-  const [area, setArea] = useState<FiltroArea>('todas')
-  const [busca, setBusca] = useState('')
+  const [area, setArea] = useState<AreaId | null>(null)
   const [documentoAberto, setDocumentoAberto] = useState<Documento | null>(null)
 
-  /* Filtra por instituição e pesquisa; a área é aplicada dentro do acervo. */
+  /* A instituição filtra; a área define qual painel está aberto. */
   const visiveis = useMemo(
-    () => filtrarDocumentos(documentos, { instituicao, busca }),
-    [instituicao, busca],
+    () => filtrarDocumentos(documentos, { instituicao, busca: '' }),
+    [instituicao],
   )
 
   const quantidadePorArea = useMemo(() => {
@@ -33,12 +32,9 @@ export default function App() {
     return contagem
   }, [visiveis])
 
-  /* Escolher uma área no bloco leva direto ao acervo já filtrado. */
+  /* Clicar na área abre o painel abaixo dos cards; clicar de novo fecha. */
   const selecionarArea = useCallback((id: AreaId) => {
-    setArea((atual) => (atual === id ? 'todas' : id))
-    window.requestAnimationFrame(() => {
-      document.getElementById('acervo')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    })
+    setArea((atual) => (atual === id ? null : id))
   }, [])
 
   const fecharDocumento = useCallback(() => setDocumentoAberto(null), [])
@@ -46,10 +42,10 @@ export default function App() {
   return (
     <div className="min-h-dvh bg-papel">
       <a
-        href="#acervo"
+        href="#areas"
         className="sr-only rounded-full bg-argila-forte px-5 py-2.5 text-sm text-white focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50"
       >
-        Ir para o acervo
+        Ir para os materiais
       </a>
 
       <Cabecalho />
@@ -62,16 +58,18 @@ export default function App() {
           areaSelecionada={area}
           aoSelecionar={selecionarArea}
           quantidadePorArea={quantidadePorArea}
-        />
-        <Acervo
-          documentos={visiveis}
-          area={area}
-          aoTrocarArea={setArea}
-          instituicao={instituicao}
-          aoTrocarInstituicao={setInstituicao}
-          busca={busca}
-          aoBuscar={setBusca}
-          aoAbrirDocumento={setDocumentoAberto}
+          painel={
+            area && (
+              <PainelArea
+                area={buscarArea(area)}
+                documentos={visiveis.filter((documento) => documento.area === area)}
+                instituicao={instituicao}
+                aoTrocarInstituicao={setInstituicao}
+                aoAbrirDocumento={setDocumentoAberto}
+                aoFechar={() => setArea(null)}
+              />
+            )
+          }
         />
       </main>
 

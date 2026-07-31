@@ -1,8 +1,7 @@
 const navegacao = [
   { href: '#resumo', rotulo: 'Resumo' },
   { href: '#instituicoes', rotulo: 'Instituições' },
-  { href: '#areas', rotulo: 'Áreas' },
-  { href: '#acervo', rotulo: 'Acervo' },
+  { href: '#areas', rotulo: 'Materiais' },
 ]
 
 export function Cabecalho() {

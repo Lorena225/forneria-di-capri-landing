@@ -1,13 +1,16 @@
 import { ArrowRight } from 'lucide-react'
 import type { AreaId } from '../data/documentos'
 import { areas } from '../data/documentos'
+import type { ReactNode } from 'react'
 import { secaoAreas } from '../data/textos'
 import { cn } from '../lib/utils'
 
 interface Props {
-  areaSelecionada: 'todas' | AreaId
+  areaSelecionada: AreaId | null
   aoSelecionar: (id: AreaId) => void
   quantidadePorArea: Map<string, number>
+  /** Painel dinâmico exibido abaixo dos cards quando há área selecionada. */
+  painel?: ReactNode
 }
 
 const acentos = {
@@ -34,7 +37,12 @@ const acentos = {
   },
 } as const
 
-export function AreasConsultoria({ areaSelecionada, aoSelecionar, quantidadePorArea }: Props) {
+export function AreasConsultoria({
+  areaSelecionada,
+  aoSelecionar,
+  quantidadePorArea,
+  painel,
+}: Props) {
   return (
     <section id="areas" className="border-t border-linha bg-superficie">
       <div className="mx-auto max-w-conteudo px-5 py-24 sm:px-8 sm:py-28">
@@ -70,6 +78,7 @@ export function AreasConsultoria({ areaSelecionada, aoSelecionar, quantidadePorA
                 key={area.id}
                 type="button"
                 aria-pressed={ativa}
+                aria-controls="painel-da-area"
                 onClick={() => aoSelecionar(area.id)}
                 style={{ animationDelay: `${indice * 90}ms` }}
                 className={cn(
@@ -122,7 +131,7 @@ export function AreasConsultoria({ areaSelecionada, aoSelecionar, quantidadePorA
 
                   <span className="mt-8 flex items-center justify-between border-t border-linha pt-6 text-sm font-medium text-argila-forte">
                     <span>
-                      {ativa ? 'Materiais em exibição' : 'Ver os materiais'}
+                      {ativa ? 'Materiais abertos abaixo' : 'Ver os materiais'}
                       <span className="sr-only"> de {area.nome}</span>
                     </span>
                     <span className="inline-flex items-center gap-2 text-[0.8125rem] font-normal text-pedra-escura">
@@ -141,6 +150,8 @@ export function AreasConsultoria({ areaSelecionada, aoSelecionar, quantidadePorA
             )
           })}
         </div>
+
+        {painel}
       </div>
     </section>
   )

@@ -43,6 +43,8 @@ export interface Area {
   ordem: string
   nome: string
   descricao: string
+  /** Frase de apoio exibida quando a área é aberta. */
+  apoio: string
   /** Escopo da macroárea — as categorias que ela reúne. */
   itens: string[]
   icone: LucideIcon
@@ -87,6 +89,8 @@ export const areas: Area[] = [
     nome: 'Fundação estratégica',
     descricao:
       'A base que orienta toda a consultoria. Aqui estão os materiais que ajudam a compreender cenário, diferenciação, proposta de valor e direcionamento das marcas antes da execução.',
+    apoio:
+      'Materiais que sustentam a direção da marca, a clareza do posicionamento e a base conceitual da consultoria.',
     itens: ['Pesquisa de mercado', 'Posicionamento de marca'],
     icone: Compass,
     acento: 'sereno',
@@ -97,6 +101,8 @@ export const areas: Area[] = [
     nome: 'Marketing',
     descricao:
       'A tradução da estratégia em comunicação, campanhas e presença de marca. Este bloco reúne planejamentos, calendários, conteúdos e materiais de apoio para fortalecer atração, percepção e relacionamento.',
+    apoio:
+      'Materiais ligados à comunicação, ao calendário estratégico, à presença digital e à construção de relacionamento com o público.',
     itens: [
       'Planejamento estratégico',
       'Calendários de marketing',
@@ -114,6 +120,8 @@ export const areas: Area[] = [
     nome: 'Comercial',
     descricao:
       'A organização da operação para vender com mais clareza, consistência e eficiência. Aqui estão os materiais ligados a processos, funil, atendimento, CRM e treinamento das equipes comerciais.',
+    apoio:
+      'Materiais ligados à estrutura comercial, CRM, atendimento, funil e treinamento da operação.',
     itens: [
       'Diagnóstico comercial',
       'Processos comerciais',

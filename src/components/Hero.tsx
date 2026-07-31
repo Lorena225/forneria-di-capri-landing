@@ -45,8 +45,8 @@ export function Hero() {
           className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 animate-surgir"
           style={{ animationDelay: '300ms' }}
         >
-          <a href="#acervo" className="botao-claro">
-            Percorrer o acervo
+          <a href="#areas" className="botao-claro">
+            Conhecer as áreas
             <ArrowDown aria-hidden="true" strokeWidth={1.5} className="h-4 w-4" />
           </a>
           <p className="text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-white/50">

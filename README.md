@@ -36,14 +36,24 @@ npm run preview # abre a versão de produção localmente
 2. **Resumo da consultoria** — texto e cinco pontos do trabalho realizado
 3. **Mini-cases** — Ineprotec e Matrícula EAD, cada um com desafio, entregas e foco
 4. **Áreas da consultoria** — três cards: Fundação estratégica, Marketing e Comercial
-5. **Acervo de entregas** — filtro por instituição e materiais agrupados por área
-6. **Rodapé institucional**
+5. **Rodapé institucional**
 
-**Como a navegação funciona:** clicar em uma das três áreas filtra o acervo por
-aquela frente e leva a página até ele. Clicar de novo na mesma área volta a exibir
-tudo. No acervo, cada material abre em um painel com a ficha completa — área,
-categoria, instituição, formato e data — de onde se lê o conteúdo ou se baixa o
-arquivo. A lista de documentos existe em um lugar só.
+Não existe mais uma seção de acervo com todos os materiais expostos de uma vez.
+
+**Como a navegação funciona — em camadas:**
+
+1. A pessoa lê a página e entende a consultoria.
+2. Clica em uma das três áreas. Abaixo dos cards abre um painel com o contexto
+   daquela frente ("Você está vendo: Marketing") e apenas os materiais dela.
+3. Dentro do painel, os materiais aparecem agrupados por instituição. Os materiais
+   comuns às duas escolas formam um grupo próprio, exibido primeiro, para não se
+   repetirem em duas listas.
+4. Clicar em um material abre a ficha completa em modal — área, categoria,
+   instituição, formato, data, leitura do conteúdo e download.
+
+No primeiro nível cada material mostra apenas título, descrição e formato. Data e
+categoria ficam para a ficha, dentro do modal. Clicar de novo na área aberta, ou no
+botão "Fechar esta área", recolhe o painel.
 
 ---
 

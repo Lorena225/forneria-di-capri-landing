@@ -78,6 +78,15 @@ export const secaoAreas = {
   chamada: 'Toque em uma área para ver seus materiais',
 }
 
+export const painel = {
+  prefixo: 'Você está vendo:',
+  tituloMateriais: 'Materiais desta área',
+  apoioMateriais:
+    'Selecione um documento para visualizar sua ficha completa e acessar o material.',
+  fechar: 'Fechar esta área',
+  grupoComum: 'Ineprotec e Matrícula EAD',
+}
+
 export const secaoMateriais = {
   titulo: 'Acervo de entregas',
   acimaDoFiltro:
