@@ -6,10 +6,9 @@
 
 export const hero = {
   titulo:
-    'Entregas estratégicas para transformar o posicionamento de marca, marketing e operação comercial.',
+    'Entregas estratégicas para transformar posicionamento, marketing e operação comercial.',
   subtitulo:
     'Nesta página, reunimos os materiais, direcionamentos e documentos desenvolvidos pela VirtruvIA para a Ineprotec e a Matrícula EAD, com foco em clareza de marca, estrutura comercial e crescimento sustentável.',
-  chamada: 'Conhecer as áreas',
 }
 
 export const resumo = {

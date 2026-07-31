@@ -17,7 +17,6 @@ export default {
         'sereno-claro': 'rgb(var(--vtr-sereno-claro) / <alpha-value>)',
         /* neutros de apoio */
         papel: 'rgb(var(--vtr-papel) / <alpha-value>)',
-        marfim: 'rgb(var(--vtr-marfim) / <alpha-value>)',
         superficie: 'rgb(var(--vtr-superficie) / <alpha-value>)',
         tinta: 'rgb(var(--vtr-tinta) / <alpha-value>)',
         grafite: 'rgb(var(--vtr-grafite) / <alpha-value>)',
