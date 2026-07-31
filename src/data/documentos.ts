@@ -357,18 +357,30 @@ export const documentos: Documento[] = [
     conteudo: '/conteudos/treinamento-excelencia-atendimento-cultura-comercial.md',
   },
 
-  /* ⚠️ PENDENTE — o arquivo ainda não foi enviado.
   {
-    id: 'documento-12',
+    id: 'documento-manual-consultores',
     titulo: 'Manual de treinamento dos consultores — comercial',
     descricao:
-      'Manual de apoio dos consultores sobre o funil comercial e a performance de atendimento das duas escolas.',
+      'Manual de capacitação, consulta diária e avaliação prática da operação no Kommo: responsabilidades do consultor, regras dos dois funis, campos obrigatórios, cadências de follow-up e decisão, atividades oficiais por etapa, rotina diária, matriz de decisão e checklists.',
     escolas: ['ineprotec', 'matricula-ead'],
     area: 'comercial',
-    categoria: 'Treinamentos comerciais',
+    categoria: 'Treinamentos de CRM',
     tipo: 'PDF',
-    dataAtualizacao: '29/07/2026',
+    dataAtualizacao: '31/07/2026',
     arquivo: '/documentos/manual-treinamento-consultores-comercial.pdf',
+    conteudo: '/conteudos/manual-treinamento-consultores-comercial.md',
   },
-  */
+  {
+    id: 'documento-metas-comerciais',
+    titulo: 'Gestão de metas comerciais no Kommo',
+    descricao:
+      'Como cadastrar, separar por empresa e acompanhar as metas de cada consultor: tipos de meta, meta proporcional, o que conta como matrícula, rotinas diária, semanal e mensal de acompanhamento, plano de ação para quem está abaixo e a pauta da reunião de metas.',
+    escolas: ['ineprotec', 'matricula-ead'],
+    area: 'comercial',
+    categoria: 'Processos comerciais',
+    tipo: 'PDF',
+    dataAtualizacao: '31/07/2026',
+    arquivo: '/documentos/gestao-de-metas-comerciais-kommo.pdf',
+    conteudo: '/conteudos/gestao-de-metas-comerciais-kommo.md',
+  },
 ]

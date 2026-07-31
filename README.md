@@ -236,15 +236,12 @@ acima. Tabelas com mais de cinco colunas ganham rolagem horizontal.
 | ---------------------- | --------------------------------------------------------------------- |
 | Fundação estratégica   | Brandbook Ineprotec e Brandbook Matrícula EAD (links externos)        |
 | Marketing              | Calendários de junho e de julho das duas escolas                      |
-| Comercial              | Configuração do Kommo, Controle de atividades, Script de vendas e os dois treinamentos |
+| Comercial              | Configuração do Kommo, Controle de atividades, Script de vendas, Manual dos consultores, Gestão de metas e os dois treinamentos |
 
 **Pendências marcadas no código:**
 
 1. **Datas** — todos os registros estão com `29/07/2026`. Ajuste `dataAtualizacao`
    para a data real de cada versão.
-2. **Manual de treinamento dos consultores** — registro pronto e comentado no fim de
-   `src/data/documentos.ts`. Coloque o arquivo em `public/documentos/` e remova os
-   `/*` e `*/`.
 3. **Pesquisa de mercado** — item sem material publicado, exibido com o aviso de
    frente em desenvolvimento.
 
