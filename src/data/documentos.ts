@@ -1,20 +1,19 @@
-import { Compass, Megaphone, Workflow, type LucideIcon } from 'lucide-react'
+import { Compass, Megaphone, type LucideIcon } from 'lucide-react'
 
 /* =========================================================================
-   ARQUIVO ÚNICO DE DADOS
-   Estrutura em três macroáreas: Fundação estratégica, Marketing e Comercial.
+   ARQUIVO ÚNICO DE DADOS — Forneria Di Capri
+   Estrutura em duas macroáreas: Posicionamento de Marca e Marketing Digital.
    Para publicar um novo material, acrescente um objeto em "documentos".
    ========================================================================= */
 
-export type EscolaId = 'ineprotec' | 'matricula-ead'
-export type AreaId = 'fundacao-estrategica' | 'marketing' | 'comercial'
+export type EscolaId = 'forneria-di-capri'
+export type AreaId = 'posicionamento' | 'marketing'
 export type TipoArquivo = 'PDF' | 'DOCX' | 'PPTX' | 'XLSX' | 'Link'
 
 export interface Documento {
   id: string
   titulo: string
   descricao: string
-  /** Uma escola, ou as duas quando o material for comum às duas operações. */
   escolas: EscolaId[]
   area: AreaId
   /** Deve ser um dos itens listados na macroárea correspondente. */
@@ -38,12 +37,6 @@ export interface Escola {
   id: EscolaId
   nome: string
   descricao: string
-  /**
-   * Logotipo oficial da instituição.
-   * Hoje aponta para o site oficial de cada escola. Para hospedar no próprio
-   * projeto, baixe o arquivo, salve em public/logos/ e troque o caminho aqui
-   * (ex.: '/logos/ineprotec.png').
-   */
   logo: string
 }
 
@@ -62,20 +55,14 @@ export interface Area {
 }
 
 /* ------------------------------------------------------------------------
-   INSTITUIÇÕES ATENDIDAS
+   CLIENTE ATENDIDO
    ------------------------------------------------------------------------ */
 export const escolas: Escola[] = [
   {
-    id: 'ineprotec',
-    nome: 'Ineprotec',
-    descricao: 'Cursos técnicos e profissionalizantes',
-    logo: 'https://ineprotec-landing.vercel.app/logo-ineprotec.png',
-  },
-  {
-    id: 'matricula-ead',
-    nome: 'Matrícula EAD',
-    descricao: 'Gestora de Polos Técnicos',
-    logo: 'https://matriculaead-landing.vercel.app/images/logo.png',
+    id: 'forneria-di-capri',
+    nome: 'Forneria Di Capri',
+    descricao: 'Casa italiana contemporânea de Brasília',
+    logo: '/logo-forneria.png',
   },
 ]
 
@@ -85,7 +72,6 @@ export const buscarEscola = (id: EscolaId): Escola =>
 export const nomeEscola = (id: EscolaId): string =>
   escolas.find((escola) => escola.id === id)?.nome ?? id
 
-/** "Ineprotec" ou "Ineprotec e Matrícula EAD" */
 export const rotuloEscolas = (ids: EscolaId[]): string =>
   ids.map(nomeEscola).join(' e ')
 
@@ -98,57 +84,38 @@ export const ehLinkExterno = (documento: Documento): boolean =>
    ------------------------------------------------------------------------ */
 export const areas: Area[] = [
   {
-    id: 'fundacao-estrategica',
+    id: 'posicionamento',
     ordem: '01',
-    nome: 'Fundação estratégica',
+    nome: 'Posicionamento de Marca',
     descricao:
-      'A base que orienta toda a consultoria. Aqui estão os materiais que ajudam a compreender cenário, diferenciação, proposta de valor e direcionamento das marcas antes da execução.',
+      'A base estratégica que orienta toda a comunicação da Forneria Di Capri. Aqui estão os materiais que constroem a identidade, a alma e o vocabulário da marca — do diagnóstico inicial ao manual completo de posicionamento.',
     apoio:
-      'Materiais que sustentam a direção da marca, a clareza do posicionamento e a base conceitual da consultoria.',
-    itens: ['Pesquisa de mercado', 'Posicionamento de marca'],
+      'Materiais que sustentam a identidade da marca, a clareza do posicionamento e a base conceitual da consultoria.',
+    itens: [
+      'Diagnóstico estratégico',
+      'Posicionamento de marca',
+      'Identidade de perfil digital',
+      'Kickoff estratégico',
+    ],
     icone: Compass,
     acento: 'sereno',
   },
   {
     id: 'marketing',
     ordem: '02',
-    nome: 'Marketing',
+    nome: 'Marketing e Mídias Sociais',
     descricao:
-      'A tradução da estratégia em comunicação, campanhas e presença de marca. Este bloco reúne planejamentos, calendários, conteúdos e materiais de apoio para fortalecer atração, percepção e relacionamento.',
+      'A tradução da estratégia em comunicação, conteúdo e presença digital. Este bloco reúne planejamentos mensais, calendários editoriais e materiais de apoio para fortalecer o posicionamento da marca nas redes sociais.',
     apoio:
-      'Materiais ligados à comunicação, ao calendário estratégico, à presença digital e à construção de relacionamento com o público.',
+      'Materiais ligados à gestão de mídias sociais, ao calendário estratégico, à presença digital e à construção de relacionamento com o público.',
     itens: [
-      'Planejamento estratégico',
-      'Painéis e indicadores',
-      'Páginas de captação',
-      'Calendários de marketing',
+      'Planejamento mensal',
       'Calendários editoriais',
-      'Campanhas',
-      'Conteúdos e posts',
-      'Treinamentos de marketing',
+      'Estratégia de conteúdo',
+      'Identidade de perfil digital',
     ],
     icone: Megaphone,
     acento: 'argila',
-  },
-  {
-    id: 'comercial',
-    ordem: '03',
-    nome: 'Comercial',
-    descricao:
-      'A organização da operação para vender com mais clareza, consistência e eficiência. Aqui estão os materiais ligados a processos, funil, atendimento, CRM e treinamento das equipes comerciais.',
-    apoio:
-      'Materiais ligados à estrutura comercial, CRM, atendimento, funil e treinamento da operação.',
-    itens: [
-      'Diagnóstico comercial',
-      'Processos comerciais',
-      'Organização do funil de vendas',
-      'Etapas da jornada do lead',
-      'Scripts de atendimento',
-      'Treinamentos comerciais',
-      'Treinamentos de CRM',
-    ],
-    icone: Workflow,
-    acento: 'pedra',
   },
 ]
 
@@ -157,284 +124,95 @@ export const buscarArea = (id: AreaId): Area =>
 
 /* ------------------------------------------------------------------------
    DOCUMENTOS
-
-   ⚠️ CONFERIR AS DATAS: todos os registros estão com a data de publicação
-   desta página (29/07/2026). Ajuste dataAtualizacao para a data real.
    ------------------------------------------------------------------------ */
 export const documentos: Documento[] = [
-  // ----- Fundação estratégica ------------------------------------------
+  // ----- Posicionamento de Marca ------------------------------------------
   {
-    id: 'documento-01',
-    titulo: 'Brandbook Ineprotec',
+    id: 'doc-kickoff',
+    titulo: 'Kickoff Estratégico VirtruvIA × Forneria Di Capri',
     descricao:
-      'Documento de marca do Ineprotec: essência, atributos, identidade visual e diretrizes de aplicação da comunicação.',
-    escolas: ['ineprotec'],
-    area: 'fundacao-estrategica',
-    categoria: 'Posicionamento de marca',
-    tipo: 'Link',
-    dataAtualizacao: '29/07/2026',
-    arquivo: 'https://ineprotec-branding.manus.space/',
-  },
-  {
-    id: 'documento-02',
-    titulo: 'Brandbook Matrícula EAD',
-    descricao:
-      'Documento de marca da Matrícula EAD: essência, atributos, identidade visual e diretrizes de aplicação da comunicação.',
-    escolas: ['matricula-ead'],
-    area: 'fundacao-estrategica',
-    categoria: 'Posicionamento de marca',
-    tipo: 'Link',
-    dataAtualizacao: '29/07/2026',
-    arquivo: 'https://branding-matriculaead.manus.space/',
-  },
-
-  {
-    id: 'documento-pm-ineprotec',
-    titulo: 'Pesquisa de mercado — Ineprotec 2026',
-    descricao:
-      'Relatório completo de pesquisa de mercado do Ineprotec: análise de cenário, concorrência, público-alvo e oportunidades estratégicas para 2026.',
-    escolas: ['ineprotec'],
-    area: 'fundacao-estrategica',
-    categoria: 'Pesquisa de mercado',
+      'Apresentação de abertura da consultoria: contexto do projeto, metodologia de trabalho, cronograma de entregas e alinhamento estratégico inicial entre a VirtruvIA e os sócios da Forneria.',
+    escolas: ['forneria-di-capri'],
+    area: 'posicionamento',
+    categoria: 'Kickoff estratégico',
     tipo: 'PDF',
-    dataAtualizacao: '31/07/2026',
-    arquivo: '/documentos/pesquisa-mercado-ineprotec-2026.pdf',
-  },
-  {
-    id: 'documento-pm-matricula-ead',
-    titulo: 'Pesquisa de mercado — Matrícula EAD 2026',
-    descricao:
-      'Relatório completo de pesquisa de mercado da Matrícula EAD: análise de cenário, concorrência, público-alvo e oportunidades estratégicas para 2026.',
-    escolas: ['matricula-ead'],
-    area: 'fundacao-estrategica',
-    categoria: 'Pesquisa de mercado',
-    tipo: 'PDF',
-    dataAtualizacao: '31/07/2026',
-    arquivo: '/documentos/pesquisa-mercado-matricula-ead-2026.pdf',
-  },
-
-  // ----- Marketing ------------------------------------------------------
-  {
-    id: 'documento-dashboard-executivo',
-    titulo: 'Dashboard executivo — Ineprotec e Matrícula EAD',
-    descricao:
-      'Painel online com a leitura consolidada das duas operações, reunindo os indicadores comerciais e de marketing acompanhados no dia a dia da gestão.',
-    escolas: ['ineprotec', 'matricula-ead'],
-    area: 'marketing',
-    categoria: 'Painéis e indicadores',
-    tipo: 'Link',
-    dataAtualizacao: '31/07/2026',
-    arquivo: 'https://dashboard-mat-ine.vercel.app/',
+    dataAtualizacao: '03/08/2026',
+    arquivo: '/documentos/kickoff-estrategico-v2.pdf',
     destaque: true,
   },
   {
-    id: 'documento-landing-ineprotec',
-    titulo: 'Landing page — Ineprotec',
+    id: 'doc-diagnostico',
+    titulo: 'Diagnóstico 360° — Forneria Di Capri',
     descricao:
-      'Página de captação da Ineprotec, com a apresentação da escola e o caminho até o atendimento comercial.',
-    escolas: ['ineprotec'],
-    area: 'marketing',
-    categoria: 'Páginas de captação',
-    tipo: 'Link',
-    dataAtualizacao: '31/07/2026',
-    arquivo: 'https://ineprotec-landing.vercel.app/',
+      'Levantamento completo da operação, público, concorrência, presença digital e metas do negócio. Base de dados que orientou toda a construção estratégica da consultoria.',
+    escolas: ['forneria-di-capri'],
+    area: 'posicionamento',
+    categoria: 'Diagnóstico estratégico',
+    tipo: 'PDF',
+    dataAtualizacao: '03/08/2026',
+    arquivo: '/documentos/diagnostico-360.pdf',
   },
   {
-    id: 'documento-landing-matricula-regular',
-    titulo: 'Landing page — Matrícula EAD | curso técnico regular',
+    id: 'doc-posicionamento',
+    titulo: 'Manual de Posicionamento Estratégico de Marca',
     descricao:
-      'Página de captação da Matrícula EAD dedicada ao curso técnico regular, para o público que precisa cursar a formação completa.',
-    escolas: ['matricula-ead'],
-    area: 'marketing',
-    categoria: 'Páginas de captação',
-    tipo: 'Link',
-    dataAtualizacao: '31/07/2026',
-    arquivo: 'https://matriculaead-landing.vercel.app/',
+      'Documento central da consultoria: alma da marca, posicionamento em uma linha, frase-mãe, as seis palavras-âncora (mesa, casa, forno, massa, vinho, sabor), tom de voz, arquétipos de público e sistema digital de marca.',
+    escolas: ['forneria-di-capri'],
+    area: 'posicionamento',
+    categoria: 'Posicionamento de marca',
+    tipo: 'PDF',
+    dataAtualizacao: '03/08/2026',
+    arquivo: '/documentos/posicionamento-marca-v2.pdf',
   },
   {
-    id: 'documento-landing-competencia',
-    titulo: 'Landing page — Matrícula EAD | formação por competência',
+    id: 'doc-bio',
+    titulo: 'Proposta de Posicionamento e Identidade do Perfil',
     descricao:
-      'Página de captação dedicada à formação por competência, para o profissional com experiência que busca a avaliação da própria trajetória.',
-    escolas: ['matricula-ead'],
-    area: 'marketing',
-    categoria: 'Páginas de captação',
-    tipo: 'Link',
-    dataAtualizacao: '31/07/2026',
-    arquivo: 'https://virtruvia-landing.vercel.app/',
+      'Apresentação com opções de bio, estratégia de destaques do Instagram e linguagem de perfil — construída para posicionar a Forneria como casa italiana contemporânea de Brasília.',
+    escolas: ['forneria-di-capri'],
+    area: 'posicionamento',
+    categoria: 'Identidade de perfil digital',
+    tipo: 'PDF',
+    dataAtualizacao: '03/08/2026',
+    arquivo: '/documentos/apresentacao-nova-bio-dicapri.pdf',
   },
 
+  // ----- Marketing e Mídias Sociais ---------------------------------------
   {
-    id: 'documento-ps-ineprotec',
-    titulo: 'Planejamento estratégico de conteúdo — Ineprotec',
+    id: 'doc-planejamento-julho',
+    titulo: 'Planejamento Mensal — Julho 2026',
     descricao:
-      'Direção do semestre de agosto a dezembro de 2026: território de mensagem, públicos prioritários, cinco pilares editoriais, frequência de feed e stories, estrutura semanal fixa, CTAs padronizados e metas de mensuração.',
-    escolas: ['ineprotec'],
+      'Planejamento estratégico completo de julho: objetivo do mês, cinco arcos de conteúdo semanais, grade de publicações com tema, formato, objetivo criativo e CTA para cada post, além da estrutura de stories de apoio.',
+    escolas: ['forneria-di-capri'],
     area: 'marketing',
-    categoria: 'Planejamento estratégico',
+    categoria: 'Planejamento mensal',
     tipo: 'PDF',
-    dataAtualizacao: '31/07/2026',
-    arquivo: '/documentos/planejamento-semestral-conteudo-ineprotec.pdf',
-    conteudo: '/conteudos/planejamento-semestral-conteudo-ineprotec.md',
+    dataAtualizacao: '03/08/2026',
+    arquivo: '/documentos/planejamento-julho-2026.pdf',
+    destaque: true,
   },
   {
-    id: 'documento-ps-matricula-ead',
-    titulo: 'Planejamento estratégico de conteúdo — Matrícula EAD',
+    id: 'doc-calendario-junho',
+    titulo: 'Calendário Editorial — Junho 2026',
     descricao:
-      'Direção do semestre de agosto a dezembro de 2026: objetivos de posicionamento e comerciais, os dois públicos prioritários, cinco pilares editoriais com pesos, cursos prioritários, frequência de publicação e estrutura semanal fixa.',
-    escolas: ['matricula-ead'],
-    area: 'marketing',
-    categoria: 'Planejamento estratégico',
-    tipo: 'PDF',
-    dataAtualizacao: '31/07/2026',
-    arquivo: '/documentos/planejamento-semestral-conteudo-matricula-ead.pdf',
-    conteudo: '/conteudos/planejamento-semestral-conteudo-matricula-ead.md',
-  },
-
-  {
-    id: 'documento-03',
-    titulo: 'Calendário de junho — Ineprotec',
-    descricao:
-      'Bases do novo posicionamento da escola e plano de publicações do mês, apoiado em prova de credibilidade, Brasília como território e o aluno como protagonista.',
-    escolas: ['ineprotec'],
+      'Grade editorial de junho organizada por semanas: objetivo semanal, três posts de feed e cinco stories por semana. Temas centrais: Dia dos Namorados, técnica com Dani Branca, harmonização de vinhos e convite à reserva.',
+    escolas: ['forneria-di-capri'],
     area: 'marketing',
     categoria: 'Calendários editoriais',
-    tipo: 'DOCX',
-    dataAtualizacao: '29/07/2026',
-    arquivo: '/documentos/calendario-junho-ineprotec.docx',
-    conteudo: '/conteudos/calendario-junho-ineprotec.md',
+    tipo: 'PDF',
+    dataAtualizacao: '03/08/2026',
+    arquivo: '/documentos/calendario-junho-2026.pdf',
   },
   {
-    id: 'documento-04',
-    titulo: 'Calendário de junho — Matrícula EAD',
+    id: 'doc-calendario-maio',
+    titulo: 'Calendário Editorial — Maio 2026',
     descricao:
-      'Grade de publicações do mês organizada por pilar, formato, tema e gancho, cobrindo marca, modalidades, cursos e jornada do aluno.',
-    escolas: ['matricula-ead'],
+      'Estratégia editorial de maio estruturada como sistema narrativo: pilares "A Casa", Dia das Mães, "Vinho e Ocasião" e "A Casa é Sua". Inclui formatos, funções de cada post e estrutura de stories com forno, salão, mesa pronta e UGC.',
+    escolas: ['forneria-di-capri'],
     area: 'marketing',
     categoria: 'Calendários editoriais',
-    tipo: 'DOCX',
-    dataAtualizacao: '29/07/2026',
-    arquivo: '/documentos/calendario-junho-matricula-ead.docx',
-    conteudo: '/conteudos/calendario-junho-matricula-ead.md',
-  },
-  {
-    id: 'documento-05',
-    titulo: 'Calendário editorial de julho — Ineprotec',
-    descricao:
-      'Plano semanal de feed e stories com objetivo, gancho e estratégia de interação por publicação, além da distribuição editorial e das metas semanais.',
-    escolas: ['ineprotec'],
-    area: 'marketing',
-    categoria: 'Calendários editoriais',
-    tipo: 'DOCX',
-    dataAtualizacao: '29/07/2026',
-    arquivo: '/documentos/calendario-editorial-julho-ineprotec.docx',
-    conteudo: '/conteudos/calendario-editorial-julho-ineprotec.md',
-  },
-  {
-    id: 'documento-06',
-    titulo: 'Calendário estratégico de julho — Matrícula EAD',
-    descricao:
-      'Feed e stories integrados, com o mês estruturado para responder por que confiar na Matrícula EAD e reforçar orientação e acompanhamento.',
-    escolas: ['matricula-ead'],
-    area: 'marketing',
-    categoria: 'Calendários de marketing',
-    tipo: 'DOCX',
-    dataAtualizacao: '29/07/2026',
-    arquivo: '/documentos/calendario-estrategico-julho-matricula-ead.docx',
-    conteudo: '/conteudos/calendario-estrategico-julho-matricula-ead.md',
-  },
-
-  // ----- Comercial ------------------------------------------------------
-  {
-    id: 'documento-07',
-    titulo: 'Configuração do Kommo CRM',
-    descricao:
-      'Estrutura completa da conta para implantação: funis e etapas, campos personalizados, tags, catálogo de cursos, salesbots, automações, integrações, motivos de perda e permissões.',
-    escolas: ['ineprotec', 'matricula-ead'],
-    area: 'comercial',
-    categoria: 'Processos comerciais',
     tipo: 'PDF',
-    dataAtualizacao: '29/07/2026',
-    arquivo: '/documentos/configuracao-kommo-v2.pdf',
-    conteudo: '/conteudos/configuracao-kommo-v2.md',
-  },
-  {
-    id: 'documento-08',
-    titulo: 'Controle de atividades do CRM',
-    descricao:
-      'Catálogo oficial das atividades de cada escola, com código, etapa do funil, tipo, instrução de uso, ação correspondente no CRM, responsável e prazo.',
-    escolas: ['ineprotec', 'matricula-ead'],
-    area: 'comercial',
-    categoria: 'Etapas da jornada do lead',
-    tipo: 'PDF',
-    dataAtualizacao: '29/07/2026',
-    arquivo: '/documentos/controle-de-atividades-ine-mat.pdf',
-    conteudo: '/conteudos/controle-de-atividades-ine-mat.md',
-  },
-  {
-    id: 'documento-09',
-    titulo: 'Script de vendas — Matrícula EAD',
-    descricao:
-      'Roteiro de atendimento por perfil de lead, da abertura ao fechamento, com perguntas de diagnóstico, modelos de validação e condução até a matrícula.',
-    escolas: ['matricula-ead'],
-    area: 'comercial',
-    categoria: 'Scripts de atendimento',
-    tipo: 'PDF',
-    dataAtualizacao: '29/07/2026',
-    arquivo: '/documentos/script-vendas-matricula-ead.pdf',
-    conteudo: '/conteudos/script-vendas-matricula-ead.md',
-  },
-  {
-    id: 'documento-10',
-    titulo: 'Treinamento de supervisão comercial no Kommo CRM',
-    descricao:
-      'Formação da supervisão: estrutura dos dois funis, etapas, auditoria dos atendimentos da IA e dos consultores, atividades, filtros, relatórios e rotinas diária e semanal.',
-    escolas: ['ineprotec', 'matricula-ead'],
-    area: 'comercial',
-    categoria: 'Treinamentos de CRM',
-    tipo: 'PDF',
-    dataAtualizacao: '29/07/2026',
-    arquivo: '/documentos/treinamento-supervisao-comercial-kommo-crm.pdf',
-    conteudo: '/conteudos/treinamento-supervisao-comercial-kommo-crm.md',
-  },
-  {
-    id: 'documento-11',
-    titulo: 'Treinamento de excelência no atendimento e cultura comercial',
-    descricao:
-      'Cultura comercial das duas escolas: posicionamento, empatia, escuta ativa, perfis de lead, os sete pilares do atendimento, objeções, follow-up e fechamento.',
-    escolas: ['ineprotec', 'matricula-ead'],
-    area: 'comercial',
-    categoria: 'Treinamentos comerciais',
-    tipo: 'PDF',
-    dataAtualizacao: '29/07/2026',
-    arquivo: '/documentos/treinamento-excelencia-atendimento-cultura-comercial.pdf',
-    conteudo: '/conteudos/treinamento-excelencia-atendimento-cultura-comercial.md',
-  },
-
-  {
-    id: 'documento-manual-consultores',
-    titulo: 'Manual de treinamento dos consultores — comercial',
-    descricao:
-      'Manual de capacitação, consulta diária e avaliação prática da operação no Kommo: responsabilidades do consultor, regras dos dois funis, campos obrigatórios, cadências de follow-up e decisão, atividades oficiais por etapa, rotina diária, matriz de decisão e checklists.',
-    escolas: ['ineprotec', 'matricula-ead'],
-    area: 'comercial',
-    categoria: 'Treinamentos de CRM',
-    tipo: 'PDF',
-    dataAtualizacao: '31/07/2026',
-    arquivo: '/documentos/manual-treinamento-consultores-comercial.pdf',
-    conteudo: '/conteudos/manual-treinamento-consultores-comercial.md',
-  },
-  {
-    id: 'documento-metas-comerciais',
-    titulo: 'Gestão de metas comerciais no Kommo',
-    descricao:
-      'Como cadastrar, separar por empresa e acompanhar as metas de cada consultor: tipos de meta, meta proporcional, o que conta como matrícula, rotinas diária, semanal e mensal de acompanhamento, plano de ação para quem está abaixo e a pauta da reunião de metas.',
-    escolas: ['ineprotec', 'matricula-ead'],
-    area: 'comercial',
-    categoria: 'Processos comerciais',
-    tipo: 'PDF',
-    dataAtualizacao: '31/07/2026',
-    arquivo: '/documentos/gestao-de-metas-comerciais-kommo.pdf',
-    conteudo: '/conteudos/gestao-de-metas-comerciais-kommo.md',
+    dataAtualizacao: '03/08/2026',
+    arquivo: '/documentos/calendario-maio-2026.pdf',
   },
 ]

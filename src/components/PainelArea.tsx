@@ -1,82 +1,28 @@
 import { useEffect, useRef } from 'react'
 import { ArrowUpRight, Star, X } from 'lucide-react'
-import type { Area, Documento, EscolaId } from '../data/documentos'
-import { ehLinkExterno, escolas } from '../data/documentos'
-import { LogoEscola } from './LogoEscola'
+import type { Area, Documento } from '../data/documentos'
+import { ehLinkExterno } from '../data/documentos'
 import { painel } from '../data/textos'
 import { cn, ordenarPorData } from '../lib/utils'
-import type { FiltroInstituicao } from '../lib/utils'
 import { EstadoVazio } from './EstadoVazio'
 
 interface Props {
   area: Area
   documentos: Documento[]
-  instituicao: FiltroInstituicao
-  aoTrocarInstituicao: (valor: FiltroInstituicao) => void
   aoAbrirDocumento: (documento: Documento) => void
   aoFechar: () => void
 }
 
-interface Grupo {
-  chave: string
-  rotulo: string
-  /** Logos exibidas no cabeçalho do grupo (duas, quando o material é comum). */
-  logos: EscolaId[]
-  documentos: Documento[]
-}
-
-/**
- * Agrupa os materiais por instituição. Os comuns às duas escolas aparecem
- * primeiro, em um grupo próprio, para não se repetirem em duas listas.
- */
-function agrupar(documentos: Documento[]): Grupo[] {
-  const comuns = documentos.filter((doc) => doc.escolas.length > 1)
-  const grupos: Grupo[] = []
-
-  if (comuns.length > 0) {
-    grupos.push({
-      chave: 'comum',
-      rotulo: painel.grupoComum,
-      logos: escolas.map((escola) => escola.id as EscolaId),
-      documentos: comuns,
-    })
-  }
-
-  escolas.forEach((escola) => {
-    const lista = documentos.filter(
-      (doc) => doc.escolas.length === 1 && doc.escolas[0] === (escola.id as EscolaId),
-    )
-    if (lista.length > 0) {
-      grupos.push({
-        chave: escola.id,
-        rotulo: escola.nome,
-        logos: [escola.id as EscolaId],
-        documentos: lista,
-      })
-    }
-  })
-
-  return grupos
-}
-
-const opcoesInstituicao: Array<{ valor: FiltroInstituicao; rotulo: string }> = [
-  { valor: 'todos', rotulo: 'Todas' },
-  ...escolas.map((escola) => ({ valor: escola.id as FiltroInstituicao, rotulo: escola.nome })),
-]
-
 export function PainelArea({
   area,
   documentos,
-  instituicao,
-  aoTrocarInstituicao,
   aoAbrirDocumento,
   aoFechar,
 }: Props) {
   const refPainel = useRef<HTMLDivElement>(null)
-  const ordenados = ordenarPorData(documentos)
-  const grupos = agrupar([
-    ...ordenados.filter((doc) => doc.destaque),
-    ...ordenados.filter((doc) => !doc.destaque),
+  const ordenados = ordenarPorData([
+    ...documentos.filter((doc) => doc.destaque),
+    ...documentos.filter((doc) => !doc.destaque),
   ])
 
   /* Ao trocar de área, leva a leitura até o início do painel. */
@@ -134,106 +80,102 @@ export function PainelArea({
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
-          {opcoesInstituicao.map((opcao) => (
-            <button
-              key={opcao.valor}
-              type="button"
-              aria-pressed={instituicao === opcao.valor}
-              onClick={() => aoTrocarInstituicao(opcao.valor)}
-              className={cn(
-                'rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-all duration-200',
-                instituicao === opcao.valor
-                  ? 'border-sereno-forte bg-sereno-forte text-white'
-                  : 'border-sereno/40 text-sereno-forte hover:border-sereno hover:bg-sereno-claro/60 hover:text-tinta',
-              )}
-            >
-              {opcao.rotulo}
-            </button>
-          ))}
+        {/* Badge do cliente */}
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.375rem 0.875rem',
+            borderRadius: '9999px',
+            border: '1px solid rgba(176,115,69,0.3)',
+            background: 'rgba(176,115,69,0.06)',
+          }}
+        >
+          <span
+            style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: '#b07345',
+              flexShrink: 0,
+            }}
+          />
+          <span
+            style={{
+              fontSize: '0.75rem',
+              fontWeight: 500,
+              color: '#8a5732',
+              fontFamily: 'var(--font-display, Georgia, serif)',
+              fontStyle: 'italic',
+            }}
+          >
+            Forneria Di Capri
+          </span>
         </div>
       </div>
 
-      {/* Grupos por instituição */}
+      {/* Lista de documentos */}
       <div className="px-7 py-4 sm:px-10">
-        {grupos.length === 0 ? (
+        {ordenados.length === 0 ? (
           <div className="py-10">
             <EstadoVazio
-              titulo="Nada nesta combinação"
-              mensagem="Não há materiais desta área para a instituição selecionada. Escolha outra instituição para continuar."
-              acao={{ rotulo: 'Ver todas', aoClicar: () => aoTrocarInstituicao('todos') }}
+              titulo="Nenhum material nesta área"
+              mensagem="Esta frente está em desenvolvimento e será atualizada conforme os materiais forem finalizados."
             />
           </div>
         ) : (
-          grupos.map((grupo) => (
-            <section key={grupo.chave} className="py-8">
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-3 rounded-xl border border-linha bg-sereno-claro/30 px-5 py-4">
-                <span className="flex items-center gap-2">
-                  {grupo.logos.map((id) => (
-                    <LogoEscola key={id} escola={id} tamanho="pequeno" />
-                  ))}
-                </span>
-                <h5 className="text-[0.8125rem] font-medium uppercase tracking-[0.16em] text-sereno-forte">
-                  {grupo.rotulo}
-                </h5>
-                <span aria-hidden="true" className="hidden h-px flex-1 bg-sereno/30 sm:block" />
-                <span className="text-[0.75rem] text-pedra-escura">
-                  {grupo.documentos.length}{' '}
-                  {grupo.documentos.length === 1 ? 'material' : 'materiais'}
-                </span>
-              </div>
-
-              <ul className="mt-5 grid gap-3 sm:pl-2">
-                {grupo.documentos.map((documento) => {
-                  const externo = ehLinkExterno(documento)
-                  return (
-                    <li key={documento.id}>
-                      <button
-                        type="button"
-                        onClick={() => aoAbrirDocumento(documento)}
-                        aria-label={`Abrir a ficha de ${documento.titulo}`}
-                        className={cn(
-                          'group flex w-full items-start justify-between gap-6 rounded-xl border px-6 py-5 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card',
-                          documento.destaque
-                            ? 'border-argila/40 bg-argila/[0.06] hover:border-argila hover:bg-argila/[0.1]'
-                            : 'border-linha bg-papel/60 hover:border-sereno hover:bg-superficie',
+          <section className="py-8">
+            <ul className="grid gap-3">
+              {ordenados.map((documento) => {
+                const externo = ehLinkExterno(documento)
+                return (
+                  <li key={documento.id}>
+                    <button
+                      type="button"
+                      onClick={() => aoAbrirDocumento(documento)}
+                      aria-label={`Abrir a ficha de ${documento.titulo}`}
+                      className={cn(
+                        'group flex w-full items-start justify-between gap-6 rounded-xl border px-6 py-5 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card',
+                        documento.destaque
+                          ? 'border-argila/40 bg-argila/[0.06] hover:border-argila hover:bg-argila/[0.1]'
+                          : 'border-linha bg-papel/60 hover:border-sereno hover:bg-superficie',
+                      )}
+                    >
+                      <span className="min-w-0">
+                        {documento.destaque && (
+                          <span className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-argila-forte px-2.5 py-1 text-[0.625rem] font-medium uppercase tracking-[0.14em] text-white">
+                            <Star aria-hidden="true" strokeWidth={2} className="h-3 w-3" />
+                            Em destaque
+                          </span>
                         )}
-                      >
-                        <span className="min-w-0">
-                          {documento.destaque && (
-                            <span className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-argila-forte px-2.5 py-1 text-[0.625rem] font-medium uppercase tracking-[0.14em] text-white">
-                              <Star aria-hidden="true" strokeWidth={2} className="h-3 w-3" />
-                              Em destaque
-                            </span>
-                          )}
-                          <span className="block font-display text-[1.25rem] font-normal leading-snug text-tinta transition-colors duration-300 group-hover:text-argila-forte">
-                            {documento.titulo}
-                          </span>
-                          <span className="mt-1.5 block max-w-[70ch] text-[0.9375rem] leading-relaxed text-grafite">
-                            {documento.descricao}
-                          </span>
+                        <span className="block font-display text-[1.25rem] font-normal leading-snug text-tinta transition-colors duration-300 group-hover:text-argila-forte">
+                          {documento.titulo}
                         </span>
+                        <span className="mt-1.5 block max-w-[70ch] text-[0.9375rem] leading-relaxed text-grafite">
+                          {documento.descricao}
+                        </span>
+                      </span>
 
-                        <span className="flex shrink-0 flex-col items-end gap-2">
-                          <span className="rounded-full border border-sereno/30 bg-sereno-claro/50 px-2.5 py-1 text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-sereno-forte">
-                            {externo ? 'Online' : documento.tipo}
-                          </span>
-                          <span className="hidden items-center gap-1.5 text-[0.8125rem] font-medium text-argila-forte sm:flex">
-                            Abrir material
-                            <ArrowUpRight
-                              aria-hidden="true"
-                              strokeWidth={1.5}
-                              className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                            />
-                          </span>
+                      <span className="flex shrink-0 flex-col items-end gap-2">
+                        <span className="rounded-full border border-sereno/30 bg-sereno-claro/50 px-2.5 py-1 text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-sereno-forte">
+                          {externo ? 'Online' : documento.tipo}
                         </span>
-                      </button>
-                    </li>
-                  )
-                })}
-              </ul>
-            </section>
-          ))
+                        <span className="hidden items-center gap-1.5 text-[0.8125rem] font-medium text-argila-forte sm:flex">
+                          Abrir material
+                          <ArrowUpRight
+                            aria-hidden="true"
+                            strokeWidth={1.5}
+                            className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                          />
+                        </span>
+                      </span>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
         )}
       </div>
     </div>

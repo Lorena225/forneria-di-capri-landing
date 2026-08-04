@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, BookOpen, Download, X } from 'lucide-react'
 import type { Documento } from '../data/documentos'
-import { buscarArea, ehLinkExterno, rotuloEscolas } from '../data/documentos'
+import { buscarArea, ehLinkExterno } from '../data/documentos'
 import { LeitorDocumento } from './LeitorDocumento'
-import { LogoEscola } from './LogoEscola'
 
 interface Props {
   documento: Documento
@@ -83,7 +82,7 @@ export function ModalDocumento({ documento, aoFechar }: Props) {
   const ficha = [
     { rotulo: 'Área', valor: area.nome },
     { rotulo: 'Categoria', valor: documento.categoria },
-    { rotulo: 'Instituição', valor: rotuloEscolas(documento.escolas) },
+    { rotulo: 'Cliente', valor: 'Forneria Di Capri' },
     { rotulo: 'Formato', valor: externo ? 'Página online' : documento.tipo },
     { rotulo: 'Atualizado em', valor: documento.dataAtualizacao },
   ]
@@ -107,10 +106,36 @@ export function ModalDocumento({ documento, aoFechar }: Props) {
         <div className="shrink-0 border-b border-linha bg-sereno-claro/40 px-6 pb-7 pt-7 sm:px-10 sm:pt-9">
           <div className="flex items-start justify-between gap-6">
             <div>
-              <span className="mb-5 flex flex-wrap items-center gap-2">
-                {documento.escolas.map((id) => (
-                  <LogoEscola key={id} escola={id} tamanho="pequeno" />
-                ))}
+              {/* Badge do cliente */}
+              <span
+                className="mb-5 inline-flex items-center gap-2"
+                style={{
+                  padding: '0.375rem 0.875rem',
+                  borderRadius: '9999px',
+                  border: '1px solid rgba(176,115,69,0.25)',
+                  background: 'rgba(176,115,69,0.06)',
+                }}
+              >
+                <span
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    background: '#b07345',
+                    flexShrink: 0,
+                  }}
+                />
+                <span
+                  style={{
+                    fontSize: '0.75rem',
+                    fontWeight: 500,
+                    color: '#8a5732',
+                    fontFamily: 'var(--font-display, Georgia, serif)',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  Forneria Di Capri
+                </span>
               </span>
               <p className="text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-sereno-forte">
                 {area.nome}

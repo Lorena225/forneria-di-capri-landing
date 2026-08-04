@@ -1,6 +1,5 @@
 import { ArrowDown } from 'lucide-react'
 import { hero } from '../data/textos'
-import { buscarEscola } from '../data/documentos'
 
 export function Hero() {
   return (
@@ -78,22 +77,17 @@ export function Hero() {
           color: '#2c393f',
         }}
       >
-        {/* Círculo de Vitrúvio — referência direta ao nome da marca */}
         <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" strokeWidth="0.8"/>
         <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="0.5"/>
         <circle cx="100" cy="100" r="35" fill="none" stroke="currentColor" strokeWidth="0.4"/>
-        {/* Cruz áurea */}
         <line x1="100" y1="15" x2="100" y2="185" stroke="currentColor" strokeWidth="0.5"/>
         <line x1="15" y1="100" x2="185" y2="100" stroke="currentColor" strokeWidth="0.5"/>
-        {/* Diagonais */}
         <line x1="40" y1="40" x2="160" y2="160" stroke="currentColor" strokeWidth="0.3"/>
         <line x1="160" y1="40" x2="40" y2="160" stroke="currentColor" strokeWidth="0.3"/>
-        {/* Polígono inscrito — referência geométrica renascentista */}
         <polygon
           points="100,18 175,62 175,138 100,182 25,138 25,62"
           fill="none" stroke="currentColor" strokeWidth="0.6"
         />
-        {/* Pontos cardinais ornamentais */}
         <circle cx="100" cy="15" r="2" fill="currentColor"/>
         <circle cx="185" cy="100" r="2" fill="currentColor"/>
         <circle cx="100" cy="185" r="2" fill="currentColor"/>
@@ -236,7 +230,7 @@ export function Hero() {
           {hero.subtitulo}
         </p>
 
-        {/* CTA + instituições */}
+        {/* CTA + logo do cliente */}
         <div
           className="animate-surgir"
           style={{
@@ -251,47 +245,49 @@ export function Hero() {
             Conhecer as áreas
             <ArrowDown aria-hidden="true" strokeWidth={1.5} className="h-4 w-4" />
           </a>
-          {/* Logos das escolas — sutis, sem container */}
+          {/* Badge do cliente */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '1.25rem',
+              gap: '0.75rem',
+              padding: '0.5rem 1rem',
+              borderRadius: '9999px',
+              border: '1px solid rgba(44,57,63,0.12)',
+              background: 'rgba(250,244,236,0.6)',
             }}
           >
-            <img
-              src={buscarEscola('ineprotec').logo}
-              alt="Ineprotec"
+            <span
               style={{
-                height: '22px',
-                width: 'auto',
-                maxWidth: '110px',
-                objectFit: 'contain',
-                opacity: 0.45,
-                filter: 'saturate(0) brightness(0.25)',
+                fontSize: '0.75rem',
+                fontWeight: 500,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'rgba(44,57,63,0.5)',
               }}
-            />
+            >
+              Cliente
+            </span>
             <span
               aria-hidden="true"
               style={{
                 display: 'block',
                 width: '1px',
-                height: '16px',
-                background: 'rgba(44,57,63,0.2)',
+                height: '14px',
+                background: 'rgba(44,57,63,0.15)',
               }}
             />
-            <img
-              src={buscarEscola('matricula-ead').logo}
-              alt="Matrícula EAD"
+            <span
               style={{
-                height: '22px',
-                width: 'auto',
-                maxWidth: '110px',
-                objectFit: 'contain',
-                opacity: 0.45,
-                filter: 'saturate(0) brightness(0.25)',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+                color: 'rgba(44,57,63,0.75)',
+                fontFamily: 'var(--font-display, Georgia, serif)',
+                fontStyle: 'italic',
               }}
-            />
+            >
+              Forneria Di Capri
+            </span>
           </div>
         </div>
       </div>

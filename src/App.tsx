@@ -9,28 +9,19 @@ import { ModalDocumento } from './components/ModalDocumento'
 import { Rodape } from './components/Rodape'
 import type { AreaId, Documento } from './data/documentos'
 import { areas, buscarArea, documentos } from './data/documentos'
-import type { FiltroInstituicao } from './lib/utils'
-import { filtrarDocumentos } from './lib/utils'
 
 export default function App() {
-  const [instituicao, setInstituicao] = useState<FiltroInstituicao>('todos')
   const [area, setArea] = useState<AreaId | null>(null)
   const [documentoAberto, setDocumentoAberto] = useState<Documento | null>(null)
-
-  /* A instituição filtra; a área define qual painel está aberto. */
-  const visiveis = useMemo(
-    () => filtrarDocumentos(documentos, { instituicao, busca: '' }),
-    [instituicao],
-  )
 
   const quantidadePorArea = useMemo(() => {
     const contagem = new Map<string, number>()
     areas.forEach((item) => contagem.set(item.id, 0))
-    visiveis.forEach((documento) => {
+    documentos.forEach((documento) => {
       contagem.set(documento.area, (contagem.get(documento.area) ?? 0) + 1)
     })
     return contagem
-  }, [visiveis])
+  }, [])
 
   /* Clicar na área abre o painel abaixo dos cards; clicar de novo fecha. */
   const selecionarArea = useCallback((id: AreaId) => {
@@ -62,9 +53,7 @@ export default function App() {
             area && (
               <PainelArea
                 area={buscarArea(area)}
-                documentos={visiveis.filter((documento) => documento.area === area)}
-                instituicao={instituicao}
-                aoTrocarInstituicao={setInstituicao}
+                documentos={documentos.filter((documento) => documento.area === area)}
                 aoAbrirDocumento={setDocumentoAberto}
                 aoFechar={() => setArea(null)}
               />

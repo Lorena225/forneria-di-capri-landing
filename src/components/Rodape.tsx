@@ -1,5 +1,4 @@
 import { rodape } from '../data/textos'
-import { escolas } from '../data/documentos'
 
 export function Rodape() {
   const ano = new Date().getFullYear()
@@ -198,32 +197,86 @@ export function Rodape() {
                 color: 'rgba(133,155,164,0.9)',
               }}
             >
-              Instituições atendidas
+              Cliente atendido
             </p>
-            <ul style={{ marginTop: '1.5rem' }} className="space-y-4">
-              {escolas.map((escola) => (
-                <li key={escola.id}>
-                  <span
+
+            <div style={{ marginTop: '1.5rem' }}>
+              <span
+                style={{
+                  display: 'block',
+                  fontFamily: 'var(--font-display, Georgia, serif)',
+                  fontSize: '1.25rem',
+                  fontWeight: 300,
+                  fontStyle: 'italic',
+                  color: 'rgba(26,33,36,0.85)',
+                }}
+              >
+                Forneria Di Capri
+              </span>
+              <span
+                style={{
+                  display: 'block',
+                  marginTop: '0.375rem',
+                  fontSize: '0.8125rem',
+                  color: 'rgba(26,33,36,0.5)',
+                }}
+              >
+                Casa italiana contemporânea de Brasília
+              </span>
+              <span
+                style={{
+                  display: 'block',
+                  marginTop: '0.25rem',
+                  fontSize: '0.8125rem',
+                  color: 'rgba(26,33,36,0.4)',
+                }}
+              >
+                Park Sul · Asa Sul
+              </span>
+            </div>
+
+            {/* Escopo da consultoria */}
+            <div style={{ marginTop: '2rem' }}>
+              <p
+                style={{
+                  fontSize: '0.6875rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(133,155,164,0.9)',
+                }}
+              >
+                Escopo
+              </p>
+              <ul style={{ marginTop: '0.875rem', display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
+                {['Posicionamento de marca', 'Gestão de mídias sociais', 'Calendários editoriais', 'Estratégia de conteúdo'].map((item) => (
+                  <li
+                    key={item}
                     style={{
-                      display: 'block',
-                      fontSize: '1.0625rem',
-                      color: 'rgba(26,33,36,0.85)',
-                    }}
-                  >
-                    {escola.nome}
-                  </span>
-                  <span
-                    style={{
-                      display: 'block',
                       fontSize: '0.8125rem',
-                      color: 'rgba(26,33,36,0.5)',
+                      color: 'rgba(26,33,36,0.6)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      justifyContent: 'flex-end',
                     }}
                   >
-                    {escola.descricao}
-                  </span>
-                </li>
-              ))}
-            </ul>
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        width: '4px',
+                        height: '4px',
+                        borderRadius: '50%',
+                        background: '#b07345',
+                        flexShrink: 0,
+                        order: 1,
+                      }}
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <a
               href={`mailto:${rodape.contato}`}
@@ -250,7 +303,7 @@ export function Rodape() {
             color: 'rgba(44,57,63,0.45)',
           }}
         >
-          © {ano} VirtruvIA. Materiais de uso interno das instituições atendidas.
+          © {ano} VirtruvIA. Materiais de uso interno — Forneria Di Capri.
         </p>
       </div>
     </footer>

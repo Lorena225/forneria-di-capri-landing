@@ -1,6 +1,6 @@
 const navegacao = [
   { href: '#resumo', rotulo: 'Resumo' },
-  { href: '#instituicoes', rotulo: 'Instituições' },
+  { href: '#cliente', rotulo: 'Cliente' },
   { href: '#areas', rotulo: 'Materiais' },
 ]
 

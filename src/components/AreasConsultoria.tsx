@@ -91,7 +91,7 @@ export function AreasConsultoria({
           {secaoAreas.chamada}
         </p>
 
-        <div className="mt-6 grid gap-6 md:grid-cols-3 md:gap-5 lg:gap-7">
+        <div className="mt-6 grid gap-6 md:grid-cols-2 md:gap-5 lg:gap-7">
           {areas.map((area, indice) => {
             const Icone = area.icone
             const cor = acentos[area.acento]
