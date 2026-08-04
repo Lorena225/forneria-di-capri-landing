@@ -215,4 +215,53 @@ export const documentos: Documento[] = [
     dataAtualizacao: '03/08/2026',
     arquivo: '/documentos/calendario-maio-2026.pdf',
   },
+  {
+    id: 'doc-producao-001',
+    titulo: 'Produção de Conteúdo 001',
+    descricao:
+      'Pasta com os arquivos de produção de conteúdo da primeira fase — imagens, vídeos e materiais criados para as mídias sociais da Forneria Di Capri.',
+    escolas: ['forneria-di-capri'],
+    area: 'marketing',
+    categoria: 'Estratégia de conteúdo',
+    tipo: 'Link',
+    dataAtualizacao: '03/08/2026',
+    arquivo: 'https://drive.google.com/drive/folders/1_c5xsj4ndEOxTGY_ygmqwOq-9Pj75Jsd?usp=sharing',
+  },
+  {
+    id: 'doc-producao-002',
+    titulo: 'Produção de Conteúdo 002',
+    descricao:
+      'Pasta com os arquivos de produção de conteúdo da segunda fase — imagens, vídeos e materiais criados para as mídias sociais da Forneria Di Capri.',
+    escolas: ['forneria-di-capri'],
+    area: 'marketing',
+    categoria: 'Estratégia de conteúdo',
+    tipo: 'Link',
+    dataAtualizacao: '03/08/2026',
+    arquivo: 'https://drive.google.com/drive/folders/1ZffnnRIJHb0th4uSofmgHek2kqTB3dbQ?usp=sharing',
+  },
+  {
+    id: 'doc-banco-stories',
+    titulo: 'Banco de Stories',
+    descricao:
+      'Acervo completo de stories produzidos para a Forneria Di Capri — templates, sequências e materiais de apoio para a gestão diária das mídias sociais.',
+    escolas: ['forneria-di-capri'],
+    area: 'marketing',
+    categoria: 'Estratégia de conteúdo',
+    tipo: 'Link',
+    dataAtualizacao: '03/08/2026',
+    arquivo: 'https://drive.google.com/drive/folders/1Geer54t3YWPdVBpmPSMtC9pjNUvxXNnJ?usp=sharing',
+  },
+  {
+    id: 'doc-manual-marca',
+    titulo: 'Manual de Marca Publicado',
+    descricao:
+      'Versão publicada e interativa do manual de marca da Forneria Di Capri — identidade visual, paleta de cores, tipografia, tom de voz e diretrizes de aplicação.',
+    escolas: ['forneria-di-capri'],
+    area: 'marketing',
+    categoria: 'Identidade de perfil digital',
+    tipo: 'Link',
+    dataAtualizacao: '03/08/2026',
+    arquivo: 'https://forneria-di-capri-lp.vercel.app/',
+    destaque: true,
+  },
 ]
