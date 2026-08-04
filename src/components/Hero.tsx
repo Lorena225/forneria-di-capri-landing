@@ -9,7 +9,7 @@ export function Hero() {
       style={{
         /* Degradê principal: azul da marca → bege/creme harmonioso */
         background: 'linear-gradient(135deg, #859ba4 0%, #a8bcc4 18%, #c8d8dc 35%, #dde8ea 50%, #ede8e0 68%, #f5ede3 82%, #faf4ec 100%)',
-        minHeight: '72vh',
+        minHeight: '55vh',
         display: 'flex',
         alignItems: 'center',
       }}
@@ -138,64 +138,23 @@ export function Hero() {
       <div
         className="relative mx-auto w-full max-w-conteudo px-5 sm:px-8"
         style={{
-          paddingTop: '7rem',
-          paddingBottom: '5rem',
+          paddingTop: '5rem',
+          paddingBottom: '3.5rem',
           zIndex: 2,
         }}
       >
-        {/* Eyebrow com logo */}
-        <div
-          className="animate-surgir"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
-            marginBottom: '2.5rem',
-          }}
-        >
-          <img
-            src="/logo-virtruvia.png"
-            alt="VirtruvIA"
-            style={{
-              height: '22px',
-              width: 'auto',
-              opacity: 0.5,
-              filter: 'saturate(0) brightness(0.3)',
-            }}
-          />
-          <span
-            style={{
-              display: 'block',
-              width: '1px',
-              height: '18px',
-              background: 'rgba(44,57,63,0.2)',
-            }}
-          />
-          <span
-            style={{
-              fontSize: '0.6875rem',
-              fontWeight: 500,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              color: 'rgba(44,57,63,0.55)',
-            }}
-          >
-            Consultoria Estratégica
-          </span>
-        </div>
-
         {/* Headline */}
         <h1
           className="font-display animate-surgir"
           style={{
             animationDelay: '80ms',
-            fontSize: 'clamp(2rem, 4vw, 3.75rem)',
+            fontSize: 'clamp(1.75rem, 3.2vw, 3rem)',
             fontWeight: 300,
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
             color: '#1a2124',
             maxWidth: '22ch',
-            marginBottom: '1.5rem',
+            marginBottom: '1.25rem',
           }}
         >
           {hero.titulo}
@@ -211,7 +170,7 @@ export function Hero() {
             width: '40px',
             height: '1px',
             background: 'linear-gradient(to right, #b07345, #dbc2b4)',
-            marginBottom: '1.5rem',
+            marginBottom: '1.25rem',
           }}
         />
 
@@ -224,7 +183,7 @@ export function Hero() {
             lineHeight: 1.8,
             color: 'rgba(44,57,63,0.75)',
             maxWidth: '56ch',
-            marginBottom: '3rem',
+            marginBottom: '2rem',
           }}
         >
           {hero.subtitulo}
