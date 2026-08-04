@@ -110,9 +110,9 @@ export const areas: Area[] = [
       'Materiais ligados à gestão de mídias sociais, ao calendário estratégico, à presença digital e à construção de relacionamento com o público.',
     itens: [
       'Análise e performance',
-      'Planejamento mensal',
       'Calendários editoriais',
       'Produção de conteúdo',
+      'Identidade de perfil digital',
     ],
     icone: Megaphone,
     acento: 'argila',
@@ -194,20 +194,6 @@ export const documentos: Documento[] = [
     destaque: true,
   },
 
-  // Planejamento mensal
-  {
-    id: 'doc-planejamento-julho',
-    titulo: 'Planejamento Mensal: Julho 2026',
-    descricao:
-      'Planejamento estratégico completo de julho: objetivo do mês, cinco arcos de conteúdo semanais, grade de publicações com tema, formato, objetivo criativo e CTA para cada post, além da estrutura de stories de apoio.',
-    escolas: ['forneria-di-capri'],
-    area: 'marketing',
-    categoria: 'Planejamento mensal',
-    tipo: 'PDF',
-    dataAtualizacao: '03/08/2026',
-    arquivo: '/documentos/planejamento-julho-2026.pdf',
-  },
-
   // Calendários editoriais
   {
     id: 'doc-calendario-agosto',
@@ -221,6 +207,18 @@ export const documentos: Documento[] = [
     dataAtualizacao: '04/08/2026',
     arquivo: '/documentos/calendario-agosto-2026.pdf',
     destaque: true,
+  },
+  {
+    id: 'doc-calendario-julho',
+    titulo: 'Calendário Editorial: Julho 2026',
+    descricao:
+      'Grade editorial de julho com cinco arcos de conteúdo semanais, grade de publicações com tema, formato, objetivo criativo e CTA para cada post, além da estrutura de stories de apoio.',
+    escolas: ['forneria-di-capri'],
+    area: 'marketing',
+    categoria: 'Calendários editoriais',
+    tipo: 'PDF',
+    dataAtualizacao: '03/08/2026',
+    arquivo: '/documentos/planejamento-julho-2026.pdf',
   },
   {
     id: 'doc-calendario-junho',
