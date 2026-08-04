@@ -109,10 +109,10 @@ export const areas: Area[] = [
     apoio:
       'Materiais ligados à gestão de mídias sociais, ao calendário estratégico, à presença digital e à construção de relacionamento com o público.',
     itens: [
+      'Análise e performance',
       'Planejamento mensal',
       'Calendários editoriais',
-      'Estratégia de conteúdo',
-      'Identidade de perfil digital',
+      'Produção de conteúdo',
     ],
     icone: Megaphone,
     acento: 'argila',
@@ -178,6 +178,23 @@ export const documentos: Documento[] = [
   },
 
   // ----- Marketing e Mídias Sociais ---------------------------------------
+
+  // Análise e performance
+  {
+    id: 'doc-dashboard',
+    titulo: 'Dashboard de Análise: Últimos 90 Dias',
+    descricao:
+      'Painel interativo com os principais indicadores de engajamento e performance das contas da Forneria Di Capri nos últimos 90 dias. Inclui alcance, impressões, taxa de engajamento, crescimento de seguidores e os conteúdos de melhor resultado.',
+    escolas: ['forneria-di-capri'],
+    area: 'marketing',
+    categoria: 'Análise e performance',
+    tipo: 'Link',
+    dataAtualizacao: '04/08/2026',
+    arquivo: '/documentos/dashboard-90dias.html',
+    destaque: true,
+  },
+
+  // Planejamento mensal
   {
     id: 'doc-planejamento-julho',
     titulo: 'Planejamento Mensal: Julho 2026',
@@ -189,6 +206,20 @@ export const documentos: Documento[] = [
     tipo: 'PDF',
     dataAtualizacao: '03/08/2026',
     arquivo: '/documentos/planejamento-julho-2026.pdf',
+  },
+
+  // Calendários editoriais
+  {
+    id: 'doc-calendario-agosto',
+    titulo: 'Calendário Estratégico: Agosto 2026',
+    descricao:
+      'Calendário estratégico de agosto com grade de publicações, temas semanais, formatos e objetivos criativos para feed e stories da Forneria Di Capri.',
+    escolas: ['forneria-di-capri'],
+    area: 'marketing',
+    categoria: 'Calendários editoriais',
+    tipo: 'PDF',
+    dataAtualizacao: '04/08/2026',
+    arquivo: '/documentos/calendario-agosto-2026.pdf',
     destaque: true,
   },
   {
@@ -207,7 +238,7 @@ export const documentos: Documento[] = [
     id: 'doc-calendario-maio',
     titulo: 'Calendário Editorial: Maio 2026',
     descricao:
-      'Estratégia editorial de maio estruturada como sistema narrativo: pilares "A Casa", Dia das Mães, "Vinho e Ocasião" e "A Casa é Sua". Inclui formatos, funções de cada post e estrutura de stories com forno, salão, mesa pronta e UGC.',
+      'Estratégia editorial de maio estruturada como sistema narrativo: pilares “A Casa”, Dia das Mães, “Vinho e Ocasião” e “A Casa é Sua”. Inclui formatos, funções de cada post e estrutura de stories com forno, salão, mesa pronta e UGC.',
     escolas: ['forneria-di-capri'],
     area: 'marketing',
     categoria: 'Calendários editoriais',
@@ -215,6 +246,8 @@ export const documentos: Documento[] = [
     dataAtualizacao: '03/08/2026',
     arquivo: '/documentos/calendario-maio-2026.pdf',
   },
+
+  // Produção de conteúdo
   {
     id: 'doc-producao-001',
     titulo: 'Produção de Conteúdo 001',
@@ -222,7 +255,7 @@ export const documentos: Documento[] = [
       'Pasta com os arquivos de produção de conteúdo da primeira fase: imagens, vídeos e materiais criados para as mídias sociais da Forneria Di Capri.',
     escolas: ['forneria-di-capri'],
     area: 'marketing',
-    categoria: 'Estratégia de conteúdo',
+    categoria: 'Produção de conteúdo',
     tipo: 'Link',
     dataAtualizacao: '03/08/2026',
     arquivo: 'https://drive.google.com/drive/folders/1_c5xsj4ndEOxTGY_ygmqwOq-9Pj75Jsd?usp=sharing',
@@ -234,7 +267,7 @@ export const documentos: Documento[] = [
       'Pasta com os arquivos de produção de conteúdo da segunda fase: imagens, vídeos e materiais criados para as mídias sociais da Forneria Di Capri.',
     escolas: ['forneria-di-capri'],
     area: 'marketing',
-    categoria: 'Estratégia de conteúdo',
+    categoria: 'Produção de conteúdo',
     tipo: 'Link',
     dataAtualizacao: '03/08/2026',
     arquivo: 'https://drive.google.com/drive/folders/1ZffnnRIJHb0th4uSofmgHek2kqTB3dbQ?usp=sharing',
@@ -246,11 +279,13 @@ export const documentos: Documento[] = [
       'Acervo completo de stories produzidos para a Forneria Di Capri. Templates, sequências e materiais de apoio para a gestão diária das mídias sociais.',
     escolas: ['forneria-di-capri'],
     area: 'marketing',
-    categoria: 'Estratégia de conteúdo',
+    categoria: 'Produção de conteúdo',
     tipo: 'Link',
     dataAtualizacao: '03/08/2026',
     arquivo: 'https://drive.google.com/drive/folders/1Geer54t3YWPdVBpmPSMtC9pjNUvxXNnJ?usp=sharing',
   },
+
+  // Identidade de perfil digital
   {
     id: 'doc-manual-marca',
     titulo: 'Manual de Marca Publicado',
@@ -262,6 +297,5 @@ export const documentos: Documento[] = [
     tipo: 'Link',
     dataAtualizacao: '03/08/2026',
     arquivo: 'https://forneria-di-capri-lp.vercel.app/',
-    destaque: true,
   },
 ]
