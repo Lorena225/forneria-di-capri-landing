@@ -8,7 +8,7 @@ export const hero = {
   titulo:
     'Posicionamento, identidade e gestão de mídias sociais para a casa italiana contemporânea de Brasília.',
   subtitulo:
-    'Nesta página, reunimos os materiais, direcionamentos e documentos desenvolvidos pela VirtruvIA para a Forneria Di Capri — com foco em construção de marca, presença digital e gestão estratégica de conteúdo.',
+    'Nesta página, reunimos os materiais, direcionamentos e documentos desenvolvidos pela VirtruvIA para a Forneria Di Capri. O foco: construção de marca, presença digital e gestão estratégica de conteúdo.',
 }
 
 export const resumo = {
@@ -44,12 +44,12 @@ export const miniCases: MiniCase[] = [
     subtitulo:
       'Posicionamento de marca e gestão de mídias sociais para transformar substância em comunicação desejada.',
     texto:
-      'A Forneria Di Capri tem o que poucos restaurantes em Brasília conseguem acumular em menos de três anos: produto técnico de padrão internacional, dois endereços consolidados, nota 4.8 no Google e a consultoria de um pizzaiolo entre os três melhores do mundo. A VirtruvIA foi contratada para traduzir toda essa substância em uma comunicação que faça jus ao que a casa entrega — saindo de uma narrativa de "pizzaria premium" para criar uma marca desejada de experiência italiana.',
+      'A Forneria Di Capri tem o que poucos restaurantes em Brasília conseguem acumular em menos de três anos: produto técnico de padrão internacional, dois endereços consolidados, nota 4.8 no Google e a consultoria de um pizzaiolo entre os três melhores do mundo. A VirtruvIA foi contratada para traduzir toda essa substância em uma comunicação que faça jus ao que a casa entrega. Saindo de uma narrativa de "pizzaria premium" para criar uma marca desejada de experiência italiana.',
     desafio:
       'Construir um posicionamento claro e uma presença digital coerente que comunique menos foto bonita e mais processo, ambiente, sabores, vinho e estilo de vida.',
     entregas:
       'Manual de posicionamento estratégico, diagnóstico 360°, identidade de perfil digital e gestão mensal de mídias sociais com planejamentos e calendários editoriais.',
-    foco: 'Ocupar o território da nova casa italiana contemporânea de Brasília — onde a pizza deixa de ser só comida e vira uma ocasião.',
+    foco: 'Ocupar o território da nova casa italiana contemporânea de Brasília. Onde a pizza deixa de ser só comida e vira uma ocasião.',
   },
 ]
 

@@ -11,7 +11,7 @@ export function Cabecalho() {
         <a
           href="#topo"
           className="flex shrink-0 items-center gap-4"
-          aria-label="VirtruvIA — Consultoria estratégica"
+          aria-label="VirtruvIA Consultoria estratégica"
         >
           <img
             src="/logo-virtruvia.png"

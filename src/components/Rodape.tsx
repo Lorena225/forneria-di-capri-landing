@@ -303,7 +303,7 @@ export function Rodape() {
             color: 'rgba(44,57,63,0.45)',
           }}
         >
-          © {ano} VirtruvIA. Materiais de uso interno — Forneria Di Capri.
+          © {ano} VirtruvIA. Materiais de uso interno. Forneria Di Capri.
         </p>
       </div>
     </footer>

@@ -88,7 +88,7 @@ export const areas: Area[] = [
     ordem: '01',
     nome: 'Posicionamento de Marca',
     descricao:
-      'A base estratégica que orienta toda a comunicação da Forneria Di Capri. Aqui estão os materiais que constroem a identidade, a alma e o vocabulário da marca — do diagnóstico inicial ao manual completo de posicionamento.',
+      'A base estratégica que orienta toda a comunicação da Forneria Di Capri. Aqui estão os materiais que constroem a identidade, a alma e o vocabulário da marca: do diagnóstico inicial ao manual completo de posicionamento.',
     apoio:
       'Materiais que sustentam a identidade da marca, a clareza do posicionamento e a base conceitual da consultoria.',
     itens: [
@@ -142,7 +142,7 @@ export const documentos: Documento[] = [
   },
   {
     id: 'doc-diagnostico',
-    titulo: 'Diagnóstico 360° — Forneria Di Capri',
+    titulo: 'Diagnóstico 360° Forneria Di Capri',
     descricao:
       'Levantamento completo da operação, público, concorrência, presença digital e metas do negócio. Base de dados que orientou toda a construção estratégica da consultoria.',
     escolas: ['forneria-di-capri'],
@@ -168,7 +168,7 @@ export const documentos: Documento[] = [
     id: 'doc-bio',
     titulo: 'Proposta de Posicionamento e Identidade do Perfil',
     descricao:
-      'Apresentação com opções de bio, estratégia de destaques do Instagram e linguagem de perfil — construída para posicionar a Forneria como casa italiana contemporânea de Brasília.',
+      'Apresentação com opções de bio, estratégia de destaques do Instagram e linguagem de perfil. Construída para posicionar a Forneria como casa italiana contemporânea de Brasília.',
     escolas: ['forneria-di-capri'],
     area: 'posicionamento',
     categoria: 'Identidade de perfil digital',
@@ -180,7 +180,7 @@ export const documentos: Documento[] = [
   // ----- Marketing e Mídias Sociais ---------------------------------------
   {
     id: 'doc-planejamento-julho',
-    titulo: 'Planejamento Mensal — Julho 2026',
+    titulo: 'Planejamento Mensal: Julho 2026',
     descricao:
       'Planejamento estratégico completo de julho: objetivo do mês, cinco arcos de conteúdo semanais, grade de publicações com tema, formato, objetivo criativo e CTA para cada post, além da estrutura de stories de apoio.',
     escolas: ['forneria-di-capri'],
@@ -193,7 +193,7 @@ export const documentos: Documento[] = [
   },
   {
     id: 'doc-calendario-junho',
-    titulo: 'Calendário Editorial — Junho 2026',
+    titulo: 'Calendário Editorial: Junho 2026',
     descricao:
       'Grade editorial de junho organizada por semanas: objetivo semanal, três posts de feed e cinco stories por semana. Temas centrais: Dia dos Namorados, técnica com Dani Branca, harmonização de vinhos e convite à reserva.',
     escolas: ['forneria-di-capri'],
@@ -205,7 +205,7 @@ export const documentos: Documento[] = [
   },
   {
     id: 'doc-calendario-maio',
-    titulo: 'Calendário Editorial — Maio 2026',
+    titulo: 'Calendário Editorial: Maio 2026',
     descricao:
       'Estratégia editorial de maio estruturada como sistema narrativo: pilares "A Casa", Dia das Mães, "Vinho e Ocasião" e "A Casa é Sua". Inclui formatos, funções de cada post e estrutura de stories com forno, salão, mesa pronta e UGC.',
     escolas: ['forneria-di-capri'],
@@ -219,7 +219,7 @@ export const documentos: Documento[] = [
     id: 'doc-producao-001',
     titulo: 'Produção de Conteúdo 001',
     descricao:
-      'Pasta com os arquivos de produção de conteúdo da primeira fase — imagens, vídeos e materiais criados para as mídias sociais da Forneria Di Capri.',
+      'Pasta com os arquivos de produção de conteúdo da primeira fase: imagens, vídeos e materiais criados para as mídias sociais da Forneria Di Capri.',
     escolas: ['forneria-di-capri'],
     area: 'marketing',
     categoria: 'Estratégia de conteúdo',
@@ -231,7 +231,7 @@ export const documentos: Documento[] = [
     id: 'doc-producao-002',
     titulo: 'Produção de Conteúdo 002',
     descricao:
-      'Pasta com os arquivos de produção de conteúdo da segunda fase — imagens, vídeos e materiais criados para as mídias sociais da Forneria Di Capri.',
+      'Pasta com os arquivos de produção de conteúdo da segunda fase: imagens, vídeos e materiais criados para as mídias sociais da Forneria Di Capri.',
     escolas: ['forneria-di-capri'],
     area: 'marketing',
     categoria: 'Estratégia de conteúdo',
@@ -243,7 +243,7 @@ export const documentos: Documento[] = [
     id: 'doc-banco-stories',
     titulo: 'Banco de Stories',
     descricao:
-      'Acervo completo de stories produzidos para a Forneria Di Capri — templates, sequências e materiais de apoio para a gestão diária das mídias sociais.',
+      'Acervo completo de stories produzidos para a Forneria Di Capri. Templates, sequências e materiais de apoio para a gestão diária das mídias sociais.',
     escolas: ['forneria-di-capri'],
     area: 'marketing',
     categoria: 'Estratégia de conteúdo',
@@ -255,7 +255,7 @@ export const documentos: Documento[] = [
     id: 'doc-manual-marca',
     titulo: 'Manual de Marca Publicado',
     descricao:
-      'Versão publicada e interativa do manual de marca da Forneria Di Capri — identidade visual, paleta de cores, tipografia, tom de voz e diretrizes de aplicação.',
+      'Versão publicada e interativa do manual de marca da Forneria Di Capri: identidade visual, paleta de cores, tipografia, tom de voz e diretrizes de aplicação.',
     escolas: ['forneria-di-capri'],
     area: 'marketing',
     categoria: 'Identidade de perfil digital',
